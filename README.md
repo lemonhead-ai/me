@@ -223,10 +223,10 @@ Contributions, issues, and feature requests are welcome!
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourusername)
+- GitHub: [@lemonhead-ai](https://github.com/lemonhead-ai)
+- LinkedIn: [Martin Mwai](https://linkedin.com/in/martinmwai)
 - Website: [yourwebsite.com](https://yourwebsite.com)
 
 ---
 
-Made with ❤️ using Next.js and Framer Motion
+Made with ❤️ using Next.js and Framer Motion by lemonlabs
