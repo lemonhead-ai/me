@@ -16,25 +16,25 @@ const socialLinks = [
     name: 'Email', 
     icon: Mail01Icon, 
     href: 'mailto:your@email.com',
-    label: 'your@email.com' 
+    label: 'martinmwai901@gmail.com' 
   },
   { 
     name: 'GitHub', 
     icon: Github01Icon, 
-    href: 'https://github.com/yourusername',
-    label: '@yourusername' 
+    href: 'https://github.com/lemonhead-ai',
+    label: '@lemonhead-ai' 
   },
   { 
     name: 'LinkedIn', 
     icon: Linkedin02Icon, 
-    href: 'https://linkedin.com/in/yourusername',
-    label: 'Your Name' 
+    href: 'https://linkedin.com/in/martinmwai',
+    label: 'Martin Mwai' 
   },
   { 
-    name: 'Twitter', 
+    name: 'X (Twitter)', 
     icon: NewTwitterIcon, 
-    href: 'https://twitter.com/yourusername',
-    label: '@yourusername' 
+    href: 'https://x.com/sacredllemon',
+    label: '@sacredllemon' 
   },
 ];
 
@@ -83,7 +83,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <ScrollReveal direction="left">
-            <div className="glass rounded-2xl p-8">
+            <div className="glass rounded-3xl p-8">
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -97,7 +97,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
+                    className="w-full px-4 py-3 bg-secondary border border-border rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
                     placeholder="Your name"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
+                    className="w-full px-4 py-3 bg-secondary border border-border rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-secondary border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-shadow resize-none"
+                    className="w-full px-4 py-3 bg-secondary border border-border rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary transition-shadow resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                   disabled={status === 'sending' || status === 'sent'}
                   whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
                   whileTap={{ scale: status === 'idle' ? 0.98 : 1 }}
-                  className="w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-3xl font-semibold flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'sending' && 'Sending...'}
                   {status === 'sent' && 'Message Sent!'}
@@ -168,7 +168,7 @@ export default function ContactPage() {
           {/* Contact Info */}
           <ScrollReveal direction="right">
             <div className="space-y-6">
-              <div className="glass rounded-2xl p-8">
+              <div className="glass rounded-3xl p-8">
                 <h2 className="text-2xl font-bold mb-6">Connect With Me</h2>
                 <p className="text-muted mb-6">
                   I&apos;m always interested in hearing about new projects and opportunities. 
@@ -186,9 +186,9 @@ export default function ContactPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className="flex items-center gap-4 p-4 bg-secondary hover:bg-card rounded-lg transition-colors group"
+                        className="flex items-center gap-4 p-4 bg-secondary hover:bg-card rounded-3xl transition-colors group"
                       >
-                        <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        <div className="p-2 rounded-3xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
                           <link.icon size={24} className="text-primary" />
                         </div>
                         <div>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="glass rounded-2xl p-8">
+              <div className="glass rounded-3xl p-8">
                 <h3 className="text-xl font-bold mb-4">Availability</h3>
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />

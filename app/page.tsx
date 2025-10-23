@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { 
-  ArrowRight01Icon, 
+  ArrowUpRight01Icon, 
   MessageProgrammingIcon, 
   Mouse01Icon, 
   ArrowDown01Icon,
@@ -13,7 +13,8 @@ import {
   SparklesIcon,
   Linkedin02Icon,
   Github01Icon,
-  DribbbleIcon
+  DribbbleIcon,
+  SmartPhone01Icon
 } from 'hugeicons-react';
 import { 
   ScrollReveal, 
@@ -123,7 +124,7 @@ export default function Home() {
                       href="/contact"
                       className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors"
                     >
-                      Contact Me
+                      Get in Touch
                       <MessageProgrammingIcon size={20} />
                     </Link>
                   </HoverScale>
@@ -137,12 +138,12 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1.5 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="relative w-120 h-100 lg:w-80 lg:h-90"
+                className="relative w-90 h-90 lg:w-80 lg:h-80"
               >
                 {/* Blob background shape - Full size reference for clipPath */}
                 <svg 
-                  className="absolute inset-0 w-50 h-90" 
-                  viewBox="0 0 200 187" 
+                  className="absolute inset-0 w-50 h-48" 
+                  viewBox="0 0 200 -179" 
                   xmlns="http://www.w3.org/2000/svg"
                   preserveAspectRatio="xMidYMid meet"
                 >
@@ -167,7 +168,7 @@ export default function Home() {
                 
                 {/* Clipped Profile Image - Full size, no padding */}
                 <div 
-                  className="relative w-50 h-50 overflow-hidden"
+                  className="relative w-50 h-48 overflow-hidden"
                   style={{ 
                     clipPath: 'url(#blob-clip)',
                     WebkitClipPath: 'url(#blob-clip)' // For broader browser support
@@ -195,7 +196,7 @@ export default function Home() {
 
                 {/* Floating decoration */}
                 <FloatingElement>
-                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-xl" />
+                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-4xl" />
                 </FloatingElement>
                 <FloatingElement>
                   <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full blur-xl" />
@@ -217,7 +218,7 @@ export default function Home() {
             >
               <Link href="#about" className="flex flex-col items-center gap-2 text-muted hover:text-primary transition-colors">
                 <Mouse01Icon size={24} />
-                <span className="text-sm">Scroll down</span>
+                <span className="text-sm"></span>
                 <ArrowDown01Icon size={16} className="animate-bounce" />
               </Link>
             </motion.div>
@@ -251,6 +252,11 @@ export default function Home() {
                   icon: SparklesIcon,
                   title: 'UI/UX Design',
                   description: 'Creating beautiful and intuitive user interfaces with attention to detail',
+                },
+                {
+                  icon: SmartPhone01Icon,
+                  title: 'Mobile Development',
+                  description: 'Designing mobile-first applications that provide seamless user experiences on all screen sizes, acrooss various platforms.',
                 },
               ].map((skill, i) => (
                 <StaggerItem key={i}>
@@ -288,10 +294,10 @@ export default function Home() {
             <HoverScale>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-blue rounded-lg font-semibold transition-colors"
               >
                 Start a Conversation
-                <ArrowRight01Icon size={20} />
+                <ArrowUpRight01Icon size={25} />
               </Link>
             </HoverScale>
           </ScrollReveal>

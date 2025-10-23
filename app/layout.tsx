@@ -8,17 +8,31 @@ import { ScrollProgress, MouseFollower } from '@/components/animations/AdvancedA
 
 const inter = Inter({ subsets: ['latin'] });
 
-/*export const metadata: Metadata = {
-  title: 'Portfolio - Your Name',
+export const metadata: Metadata = {
+  title: 'Portfolio - Martin Mwai',
   description: 'Software developer portfolio showcasing projects and skills',
   keywords: ['portfolio', 'software developer', 'web development', 'projects'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: 'Martin Mwai', url: 'https://martinmwai.com' }],
   openGraph: {
-    title: 'Portfolio - Your Name',
+    title: 'Portfolio - Martin Mwai',
     description: 'Software developer portfolio',
     type: 'website',
   },
-};*/
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f0f0f' }
+  ],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Portfolio'
+  },
+};
 
 export default function RootLayout({
   children,
@@ -27,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+      <body className={`${inter.className} bg-background text-foreground antialiased`} suppressHydrationWarning>
         <ThemeProvider>
           <ScrollProgress />
           <MouseFollower />

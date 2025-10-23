@@ -1,15 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon } from 'hugeicons-react';
+import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon } from 'hugeicons-react';
 import { HoverScale } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
 
 const socialLinks = [
-  { name: 'GitHub', icon: Github01Icon, href: 'https://github.com/yourusername' },
-  { name: 'LinkedIn', icon: Linkedin02Icon, href: 'https://linkedin.com/in/yourusername' },
-  { name: 'Twitter', icon: NewTwitterIcon, href: 'https://twitter.com/yourusername' },
-  { name: 'Email', icon: Mail01Icon, href: 'mailto:your@email.com' },
+  { name: 'GitHub', icon: Github01Icon, href: 'https://github.com/lemonhead-ai' },
+  { name: 'LinkedIn', icon: Linkedin02Icon, href: 'https://www.linkedin.com/in/martinmwai/' },
+  { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/its._lemonhead/'},
+  { name: 'Twitter', icon: NewTwitterIcon, href: 'https://x.com/sacredllemon' },
+  { name: 'Email', icon: Mail01Icon, href: 'mailto:martinmwai901@gmail.com' },
 ];
 
 export function Footer() {
@@ -21,14 +22,21 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <motion.h3
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold text-primary mb-2"
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-20 h-20 rounded-full overflow-hidden" // Circular container
             >
-              &lt;Dev/&gt;
-            </motion.h3>
+              <Image 
+                src="/portlogo.png" 
+                alt="Logo" 
+                fill 
+                className="object-cover object-center" // Fill and center within circle
+              />
+            </motion.div>
+
+
+
             <p className="text-muted text-sm">
               Building digital experiences with passion and precision.
             </p>
@@ -90,7 +98,7 @@ export function Footer() {
           className="mt-8 pt-8 border-t border-border text-center"
         >
           <p className="text-muted text-sm">
-            © {currentYear} Your Name. All rights reserved.
+            © {currentYear} martinmwai. All rights reserved.
           </p>
         </motion.div>
       </div>

@@ -45,17 +45,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </p>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full flex items-center gap-1"
-              >
-                <Tag01Icon size={12} />
-                {tag}
-              </span>
-            ))}
-          </div>
+          {project.tags && project.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full flex items-center gap-1"
+                >
+                  <Tag01Icon size={12} />
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Footer */}
           <div className="flex items-center justify-between pt-4 border-t border-border">

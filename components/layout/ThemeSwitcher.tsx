@@ -2,19 +2,38 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun03Icon, Moon02Icon, Settings02Icon } from 'hugeicons-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '../providers/ThemeProvider';
 import type { AccentColor } from '@/lib/themes';
 
 export function ThemeSwitcher() {
   const { mode, accent, toggleMode, setAccent } = useTheme();
   const [showOptions, setShowOptions] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const accents: { color: AccentColor; label: string; class: string }[] = [
     { color: 'purple', label: 'Purple', class: 'bg-purple-500' },
     { color: 'blue', label: 'Blue', class: 'bg-blue-500' },
     { color: 'green', label: 'Green', class: 'bg-green-500' },
   ];
+
+  if (!mounted) {
+    return (
+      <div className="flex items-center space-x-2">
+        <div className="p-2 rounded-lg bg-secondary">
+          <div className="w-5 h-5" />
+        </div>
+        <div className="p-2 rounded-lg bg-secondary">
+          <div className="w-5 h-5" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative">
@@ -73,7 +92,7 @@ export function ThemeSwitcher() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 p-3 bg-card border border-border rounded-lg shadow-lg min-w-[180px]"
+            className="absolute right-0 mt-2 p-3  backdrop-blur-4xl border border-border rounded-4xl shadow-lg min-w-[180px]"
           >
             <p className="text-xs font-semibold text-muted mb-2 uppercase tracking-wider">
               Accent Color
@@ -88,7 +107,7 @@ export function ThemeSwitcher() {
                     setAccent(item.color);
                     setShowOptions(false);
                   }}
-                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-3xl transition-colors ${
                     accent === item.color
                       ? 'bg-primary/10 border border-primary'
                       : 'hover:bg-secondary border border-transparent'
