@@ -10,12 +10,13 @@ import {
   SentIcon
 } from 'hugeicons-react';
 import { ScrollReveal, HoverScale } from '@/components/animations/AdvancedAnimations';
+import emailjs from '@emailjs/browser'; // Import EmailJS
 
 const socialLinks = [
   { 
     name: 'Email', 
     icon: Mail01Icon, 
-    href: 'mailto:your@email.com',
+    href: 'mailto:martinmwai901@gmail.com',
     label: 'martinmwai901@gmail.com' 
   },
   { 
@@ -46,16 +47,32 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Replace these with your actual EmailJS credentials
+  const EMAILJS_SERVICE_ID = 'service_389i6sb'; // e.g., 'service_abc123'
+  const EMAILJS_TEMPLATE_ID = 'template_go24qm9'; // e.g., 'template_def456'
+  const EMAILJS_PUBLIC_KEY = 'AqDs50k_T_Aq99PGW'; // e.g., 'user_ghi789'
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Send email using EmailJS
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        e.currentTarget,
+        EMAILJS_PUBLIC_KEY
+      );
+      
       setStatus('sent');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -98,7 +115,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-secondary border border-border rounded-3xl focus:outline-none focus:ring-2 focus:ring-primary transition-shadow"
-                    placeholder="Your name"
+                    placeholder="Full Name"
                   />
                 </div>
 
@@ -208,7 +225,7 @@ export default function ContactPage() {
                   <span className="text-foreground font-medium">Available for work</span>
                 </div>
                 <p className="text-muted text-sm">
-                  Currently open to freelance projects and full-time opportunities. 
+                  Currently open to freelance projects and part time and full-time opportunities. 
                   Response time: Usually within 24 hours.
                 </p>
               </div>

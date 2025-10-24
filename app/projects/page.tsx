@@ -3,8 +3,8 @@ import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations/AdvancedAnimations';
 
 export const metadata = {
-  title: 'Projects - Your Name',
-  description: 'Explore my portfolio of web development projects',
+  title: 'Projects - Martin Mwai',
+  description: 'Explore my portfolio of diverse projects',
 };
 
 export default function ProjectsPage() {

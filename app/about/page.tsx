@@ -19,22 +19,22 @@ const skills = {
 
 const experience = [
   {
-    role: 'Senior Frontend Developer',
-    company: 'Tech Company',
+    role: 'Junior Frontend Developer, Mobile Developer',
+    company: 'Lemonlabs',
     period: '2023 - Present',
     description: 'Leading frontend development for enterprise applications',
   },
   {
     role: 'Full Stack Developer',
-    company: 'Startup Inc',
-    period: '2021 - 2023',
+    company: 'Secure Chain Systems',
+    period: '2025 - Present',
     description: 'Built and maintained multiple web applications',
   },
   {
-    role: 'Junior Developer',
-    company: 'Digital Agency',
-    period: '2020 - 2021',
-    description: 'Developed client websites and web applications',
+    role: 'Mobile Developer',
+    company: 'Secure Chain Systems',
+    period: '2025 - Present',
+    description: 'Developed mobile applications',
   },
 ];
 
@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <p>
                   I specialize in modern JavaScript frameworks, with a particular focus on React 
                   and Next.js. I love the challenge of turning complex problems into simple, 
-                  elegant solutions.
+                  elegant solutions. i am also proficient in mobile development, creating seamless experiences across devices.
                 </p>
                 <p>
                   When I&apos;m not coding, you can find me contributing to open-source projects, 
@@ -83,9 +83,9 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold mb-6">Quick Facts</h3>
               <div className="space-y-4">
                 {[
-                  { label: 'Location', value: 'San Francisco, CA' },
-                  { label: 'Experience', value: '5+ Years' },
-                  { label: 'Projects', value: '50+ Completed' },
+                  { label: 'Location', value: 'Nairobi, KE' },
+                  { label: 'Experience', value: '3+ Years' },
+                  { label: 'Projects', value: ' Completed' },
                   { label: 'Availability', value: 'Open to opportunities' },
                 ].map((fact, i) => (
                   <motion.div

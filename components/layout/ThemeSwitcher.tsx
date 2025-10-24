@@ -17,9 +17,9 @@ export function ThemeSwitcher() {
   }, []);
 
   const accents: { color: AccentColor; label: string; class: string }[] = [
-    { color: 'purple', label: 'Purple', class: 'bg-purple-500' },
-    { color: 'blue', label: 'Blue', class: 'bg-blue-500' },
-    { color: 'green', label: 'Green', class: 'bg-green-500' },
+    { color: 'purple', label: 'Purple', class: 'bg-purple-600' },
+    { color: 'blue', label: 'Blue', class: 'bg-blue-600' },
+    { color: 'green', label: 'Green', class: 'bg-green-600' },
   ];
 
   if (!mounted) {

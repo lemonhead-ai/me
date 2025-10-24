@@ -66,7 +66,7 @@ export function Header() {
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
-                    )}
+                    )}      
                   </motion.div>
                 </Link>
               </MagneticButton>
