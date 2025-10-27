@@ -129,7 +129,7 @@ export default function Home() {
               <div className="text-center">
                 <h1 className="text-4xl md:text-5xl font-bold mb-3">
                   <TextReveal text="Hi, I'm " delay={0.2} />
-                  <span className="gradient-text">
+                  <span className="text">
                     <TextReveal text="Martin Mwai" delay={0.6} />
                   </span>
                 </h1>
@@ -225,7 +225,7 @@ export default function Home() {
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
                   <TextReveal text="Hi, I'm " delay={0.2} />
                   <span className="gradient-text">
-                    <TextReveal text="Martin Mwai" delay={0.4} />
+                    <TextReveal text="Martin Mwai" delay={0.6} />
                   </span>
                 </h1>
 
