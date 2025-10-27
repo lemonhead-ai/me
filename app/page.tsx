@@ -127,9 +127,9 @@ export default function Home() {
             {/* Text below on mobile */}
             <div className="w-full px-4 sm:px-6">
               <div className="text-center">
-                <h1 className="text-4xl md:text-5xl font-bold mb-3">
+                <h1 className="text-3xl md:text-4xl font-bold mb-3">
                   <TextReveal text="Hi, I'm " delay={0.2} />
-                  <span className="text">
+                  <span className="gradient-text">
                     <TextReveal text="Martin Mwai" delay={0.6} />
                   </span>
                 </h1>
