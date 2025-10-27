@@ -225,7 +225,7 @@ export default function Home() {
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
                   <TextReveal text="Hi, I'm " delay={0.2} />
                   <span className="gradient-text">
-                    <TextReveal text="Martin Mwai" delay={0.6} />
+                    <TextReveal text="Martin Mwai" delay={0.4} />
                   </span>
                 </h1>
 
