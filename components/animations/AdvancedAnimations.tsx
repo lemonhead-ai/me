@@ -232,7 +232,7 @@ export function MouseFollower() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 700 };
+  const springConfig = { damping: 25, stiffness: 1000 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -248,13 +248,13 @@ export function MouseFollower() {
 
   return (
     <motion.div
-      className="fixed w-8 h-8 pointer-events-none z-50 mix-blend-difference"
+      className="fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
       style={{
         x: cursorXSpring,
         y: cursorYSpring,
       }}
     >
-      <div className="w-full h-full rounded-full bg-white/50 backdrop-blur-sm" />
+      <div className="w-full h-full rounded-full bg-white/14 backdrop-blur-sm" />
     </motion.div>
   );
 }
