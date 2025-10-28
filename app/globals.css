@@ -13,6 +13,11 @@
     --muted: 112 112 112;
     --border: 42 42 42;
     --card: 24 24 24;
+
+    /* Blob gradient stops - will update with theme */
+    --blob-gradient-start: 124 58 237;
+    --blob-gradient-mid: 6 182 212;
+    --blob-gradient-end: 147 51 234;
   }
 
   * {
@@ -82,6 +87,11 @@
       rgb(var(--accent)),
       rgb(var(--primary-light))
     );
+  }
+
+  /* Blob gradient utility */
+  .blob-gradient {
+    fill: url(#blob-gradient-dynamic);
   }
 
   /* Glow effect */

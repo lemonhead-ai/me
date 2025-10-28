@@ -25,14 +25,53 @@ import {
   StaggerItem,
 } from "@/components/animations/AdvancedAnimations";
 
+// Dynamic Blob SVG Component
+const BlobSVG = ({ id, viewBox, className }: { id: string; viewBox: string; className?: string }) => {
+  return (
+    <svg
+      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+      viewBox={viewBox}
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <linearGradient id={`blob-gradient-${id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style={{ stopColor: `rgb(var(--blob-gradient-start))` }} />
+          <stop offset="50%" style={{ stopColor: `rgb(var(--blob-gradient-mid))` }} />
+          <stop offset="100%" style={{ stopColor: `rgb(var(--blob-gradient-end))` }} />
+        </linearGradient>
+
+        <clipPath
+          id={`blob-clip-${id}`}
+          clipPathUnits={id === 'mobile' ? 'objectBoundingBox' : undefined}
+          transform={id === 'mobile' ? 'scale(0.005, 0.005)' : undefined}
+        >
+          <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
+              130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
+              97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+              0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+        </clipPath>
+      </defs>
+
+      <path
+        d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
+              130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
+              97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+              0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
+        fill={`url(#blob-gradient-${id})`}
+      />
+    </svg>
+  );
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Responsive: mobile layout (icons + blob row, text below) and desktop grid */}
-      <section className="relative min-h-screen flex items-center  justify-center overflow-hidden bg-background">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
-          {/* ===== MOBILE LAYOUT: icons on left of blob, text below (only visible on <lg) ===== */}
+          {/* MOBILE LAYOUT */}
           <div className="lg:hidden flex flex-col -mt-20 items-center gap-8 py-8">
             <div className="w-full flex items-start gap-6 px-4">
               {/* Social icons (mobile) */}
@@ -76,38 +115,8 @@ export default function Home() {
 
               {/* Blob + profile (mobile) */}
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 ml-4 flex-shrink-0">
-                {/* Mobile SVG: background blob shape */}
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 200 200"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <defs>
-                    <linearGradient id="blob-gradient-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{ stopColor: 'rgb(124, 58, 237)' }} />
-                      <stop offset="50%" style={{ stopColor: 'rgb(6, 182, 212)' }} />
-                      <stop offset="100%" style={{ stopColor: 'rgb(147, 51, 234)' }} />
-                    </linearGradient>
+                <BlobSVG id="mobile" viewBox="0 0 200 200" />
 
-                    <clipPath id="blob-clip-mobile" clipPathUnits="objectBoundingBox" transform="scale(0.005, 0.005)">
-                      <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                          130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                          97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                          0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                    </clipPath>
-                  </defs>
-
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                          130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                          97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                          0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                    fill="url(#blob-gradient-mobile)"
-                  />
-                </svg>
-
-                {/* Clipped image - perfectly sized to match container */}
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
@@ -163,12 +172,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* ===== end mobile layout ===== */}
 
-
-          {/* ===== DESKTOP / LARGE LAYOUT (lg and up): original grid behavior ===== */}
+          {/* DESKTOP LAYOUT */}
           <div className="hidden lg:grid grid-cols-12 gap-8 items-center min-h-screen">
-            {/* Social Icons - Left Side (desktop) */}
+            {/* Social Icons - Left Side */}
             <div className="col-span-1 flex flex-col items-center lg:items-start space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -214,7 +221,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Main Content - Center (desktop) */}
+            {/* Main Content - Center */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -267,7 +274,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Profile Image with Blob Shape - Right Side (desktop) */}
+            {/* Profile Image with Blob Shape - Right Side */}
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -275,31 +282,7 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="relative w-90 h-90 lg:w-80 lg:h-80"
               >
-                {/* Desktop-specific clipPath + gradient id */}
-                <svg
-                  className="absolute inset-0 w-50 h-48 pointer-events-none"
-                  viewBox="0 0 200 -179"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <defs>
-                    <linearGradient id="blob-gradient-desktop" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{ stopColor: 'rgb(124, 58, 237)' }} />
-                      <stop offset="50%" style={{ stopColor: 'rgb(6, 182, 212)' }} />
-                      <stop offset="100%" style={{ stopColor: 'rgb(147, 51, 234)' }} />
-                    </linearGradient>
-                    <clipPath id="blob-clip-desktop">
-                      <path
-                        d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                      />
-                    </clipPath>
-                  </defs>
-
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                    fill="url(#blob-gradient-desktop)"
-                  />
-                </svg>
+                <BlobSVG id="desktop" viewBox="0 0 200 -179" />
 
                 <div
                   className="relative w-50 h-48 overflow-hidden"
@@ -326,7 +309,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Floating decoration */}
                 <FloatingElement>
                   <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-4xl" />
                 </FloatingElement>
@@ -336,9 +318,8 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
-          {/* ===== end desktop layout ===== */}
 
-          {/* Scroll Indicator - Bottom (shared) */}
+          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
