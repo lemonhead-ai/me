@@ -230,8 +230,16 @@ export default function Home() {
                 className="text-left lg:text-left"
               >
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
-  Hi, I'm <span className="text-primary">Martin Mwai</span>
-</h1>
+                  <TextReveal text="Hi, I'm " delay={0.2} />
+                  <motion.span
+                    className="gradient-text inline-block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                  >
+                    Martin Mwai
+                  </motion.span>
+                </h1>
 
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
