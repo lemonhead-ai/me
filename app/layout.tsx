@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress, MouseFollower } from '@/components/animations/AdvancedAnimations';
+import { BrowserThemeColor } from '@/components/BrowserThemeColor'; // Add this import
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'Portfolio'
   },
+  manifest: '/manifest.json', // Add this
 };
 
 export default function RootLayout({
@@ -41,8 +43,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Additional meta tags for broader browser support */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-navbutton-color" content="#0f0f0f" />
+      </head>
       <body className={`${inter.className} bg-background text-foreground antialiased`} suppressHydrationWarning>
         <ThemeProvider>
+          <BrowserThemeColor /> {/* Add this - updates browser theme dynamically */}
           <ScrollProgress />
           <MouseFollower />
           <div className="flex flex-col min-h-screen">
