@@ -34,10 +34,10 @@ export function Header() {
             <motion.div
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-20 h-20 rounded-full overflow-hidden" // Circular container
+              className="relative w-16 h-16 rounded-full overflow-hidden" // Circular container
             >
               <Image 
-                src="/portlogo.png" 
+                src="/portfolio.jpg" 
                 alt="Logo" 
                 fill 
                 className="object-cover object-center" // Fill and center within circle
