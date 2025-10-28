@@ -125,7 +125,7 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="/profile.png"
+                    src="/portnew.png"
                     alt="Martin Mwai"
                     className="w-full h-full object-cover object-center scale-110"
                   />
@@ -292,7 +292,7 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="/profile.png"
+                    src="/portnew.png"
                     alt="Martin Mwai"
                     className="w-full h-full object-cover object-center"
                     onError={(e) => {
