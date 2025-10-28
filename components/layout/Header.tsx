@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { SpotifyMiniWidget } from '../SpotifyMiniWidget';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { SidebarRight01Icon, SidebarLeft01Icon } from 'hugeicons-react';
@@ -15,6 +16,7 @@ const navItems = [
   { name: 'Projects', path: '/projects' },
   { name: 'Contact', path: '/contact' },
 ];
+ <SpotifyMiniWidget />
 
 export function Header() {
   const pathname = usePathname();
@@ -44,6 +46,7 @@ export function Header() {
               />
             </motion.div>
           </Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">

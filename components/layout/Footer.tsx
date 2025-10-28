@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+{/* import { SpotifyMiniWidget } from '../SpotifyMiniWidget'; */}
+import { SpotifyNowPlaying } from '../SpotifyNowPlaying';
 import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon } from 'hugeicons-react';
 import { HoverScale } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
@@ -53,7 +55,7 @@ export function Footer() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                >
+                > 
                   <a
                     href={`/${item.toLowerCase()}`}
                     className="text-muted hover:text-primary transition-colors text-sm"
@@ -87,6 +89,7 @@ export function Footer() {
                 </HoverScale>
               ))}
             </div>
+            <SpotifyNowPlaying />
           </div>
         </div>
 
@@ -102,6 +105,9 @@ export function Footer() {
           </p>
         </motion.div>
       </div>
+
+      {/** Spotify Now Playing Widget */}
+      
     </footer>
   );
 }
