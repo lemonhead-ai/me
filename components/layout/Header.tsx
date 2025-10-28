@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Menu01Icon, Cancel01Icon } from 'hugeicons-react';
+import { SidebarRight01Icon, SidebarLeft01Icon } from 'hugeicons-react';
 import { useState } from 'react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { MagneticButton } from '../animations/AdvancedAnimations';
@@ -83,9 +83,9 @@ export function Header() {
               className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             >
               {mobileMenuOpen ? (
-                <Cancel01Icon size={24} />
+                <SidebarRight01Icon size={24} />
               ) : (
-                <Menu01Icon size={24} />
+                <SidebarLeft01Icon size={24} />
               )}
             </button>
           </div>

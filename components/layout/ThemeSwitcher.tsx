@@ -22,9 +22,9 @@ export function ThemeSwitcher() {
   ];
 
   const styles: { style: ThemeStyle; label: string; icon: string }[] = [
-    { style: 'default', label: 'Default', icon: '✨' },
-    { style: 'monochromatic', label: 'Mono', icon: '⚫' },
-    { style: 'pixelated', label: 'Grainy', icon: '🎞️' },
+    { style: 'default', label: 'Default', icon: '~' },
+    { style: 'monochromatic', label: 'Mono', icon: '~' },
+    { style: 'pixelated', label: 'Grainy', icon: '~' },
   ];
 
   if (!mounted) {
@@ -46,8 +46,8 @@ export function ThemeSwitcher() {
       <div className="flex items-center space-x-2">
         {/* Mode Toggle */}
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
           onClick={toggleMode}
           className="p-2 rounded-lg bg-secondary hover:bg-primary/10 transition-colors"
           aria-label="Toggle theme mode"
@@ -93,11 +93,11 @@ export function ThemeSwitcher() {
       <AnimatePresence>
         {showOptions && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            initial={{ opacity: 0, y: -10, scale: 1.1 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 p-3 backdrop-blur-4xl border border-border rounded-4xl shadow-lg min-w-[180px] bg-card/90"
+            className="absolute -right-10 mt-2 p-3 backdrop-blur-4xl border border-border rounded-4xl shadow-lg min-w-[180px] bg-card/90"
           >
             {/* Accent Colors */}
             <p className="text-xs font-semibold text-muted mb-2 uppercase tracking-wider">
