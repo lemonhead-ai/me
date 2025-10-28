@@ -4,14 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sun03Icon, Moon02Icon, Settings02Icon } from 'hugeicons-react';
 import { useState, useEffect } from 'react';
 import { useTheme } from '../providers/ThemeProvider';
-import type { AccentColor } from '@/lib/themes';
+import type { AccentColor, ThemeStyle } from '@/lib/themes';
 
 export function ThemeSwitcher() {
-  const { mode, accent, toggleMode, setAccent } = useTheme();
+  const { mode, accent, style, toggleMode, setAccent, setStyle } = useTheme();
   const [showOptions, setShowOptions] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -20,6 +19,12 @@ export function ThemeSwitcher() {
     { color: 'purple', label: 'Purple', class: 'bg-purple-600' },
     { color: 'blue', label: 'Blue', class: 'bg-blue-600' },
     { color: 'green', label: 'Green', class: 'bg-green-600' },
+  ];
+
+  const styles: { style: ThemeStyle; label: string; icon: string }[] = [
+    { style: 'default', label: 'Default', icon: '✨' },
+    { style: 'monochromatic', label: 'Mono', icon: '⚫' },
+    { style: 'pixelated', label: 'Grainy', icon: '🎞️' },
   ];
 
   if (!mounted) {
@@ -84,7 +89,7 @@ export function ThemeSwitcher() {
         </motion.button>
       </div>
 
-      {/* Accent Color Picker */}
+      {/* Options Panel */}
       <AnimatePresence>
         {showOptions && (
           <motion.div
@@ -92,12 +97,13 @@ export function ThemeSwitcher() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 p-3  backdrop-blur-4xl border border-border rounded-4xl shadow-lg min-w-[180px]"
+            className="absolute right-0 mt-2 p-3 backdrop-blur-4xl border border-border rounded-4xl shadow-lg min-w-[180px] bg-card/90"
           >
+            {/* Accent Colors */}
             <p className="text-xs font-semibold text-muted mb-2 uppercase tracking-wider">
               Accent Color
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-4">
               {accents.map((item) => (
                 <motion.button
                   key={item.color}
@@ -105,7 +111,6 @@ export function ThemeSwitcher() {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
                     setAccent(item.color);
-                    setShowOptions(false);
                   }}
                   className={`w-full flex items-center space-x-3 px-3 py-2 rounded-3xl transition-colors ${
                     accent === item.color
@@ -125,6 +130,41 @@ export function ThemeSwitcher() {
                   )}
                 </motion.button>
               ))}
+            </div>
+
+            {/* Style Options */}
+            <div className="border-t border-border pt-3">
+              <p className="text-xs font-semibold text-muted mb-2 uppercase tracking-wider">
+                Theme Style
+              </p>
+              <div className="space-y-2">
+                {styles.map((item) => (
+                  <motion.button
+                    key={item.style}
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setStyle(item.style);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-3xl transition-colors ${
+                      style === item.style
+                        ? 'bg-primary/10 border border-primary'
+                        : 'hover:bg-secondary border border-transparent'
+                    }`}
+                  >
+                    <span className="text-base">{item.icon}</span>
+                    <span className="text-sm font-medium text-foreground">
+                      {item.label}
+                    </span>
+                    {style === item.style && (
+                      <motion.div
+                        layoutId="style-check"
+                        className="ml-auto w-2 h-2 rounded-full bg-primary"
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
