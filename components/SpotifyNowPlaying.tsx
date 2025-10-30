@@ -79,7 +79,7 @@ export function SpotifyNowPlaying() {
       >
         <div className="flex items-center gap-3 text-muted">
           <div className="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center">
-            <MusicNote03Icon size={24} />
+            <SpotifyIcon size={24} />
           </div>
           <div className="flex-1">
             <p className="text-sm font-medium">Not Playing</p>
