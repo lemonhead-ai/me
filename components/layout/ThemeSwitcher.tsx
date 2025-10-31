@@ -20,13 +20,8 @@ const DURATION = 0.3;
 export function ThemeSwitcher() {
   const { mode, accent, style, toggleMode, setAccent, setStyle } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const accents: { color: AccentColor; label: string; hex: string }[] = [
     { color: 'purple', label: 'Purple', hex: '#a855f7' },
@@ -66,19 +61,6 @@ export function ThemeSwitcher() {
     };
   }, [isOpen]);
 
-  if (!mounted) {
-    return (
-      <div className="flex items-center space-x-2">
-        <div className="p-2">
-          <div className="w-6 h-6" />
-        </div>
-        <div className="p-2">
-          <div className="w-6 h-6" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="relative flex items-center space-x-2" ref={containerRef}>
       {/* Mode Toggle Button */}
@@ -89,6 +71,7 @@ export function ThemeSwitcher() {
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
         className="p-2 rounded-lg hover:bg-secondary/50 transition-colors"
         aria-label="Toggle theme mode"
+        suppressHydrationWarning
       >
         <AnimatePresence mode="wait" initial={false}>
           {mode === 'dark' ? (
