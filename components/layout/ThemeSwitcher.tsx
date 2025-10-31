@@ -239,7 +239,7 @@ export function ThemeSwitcher() {
                         whileHover={{ scale: 1.02, x: 2 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setStyle(item.style)}
-                        className={`w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-lg transition-all ${
+                        className={`w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-3xl transition-all ${
                           style === item.style
                             ? 'bg-primary/90 text-primary shadow-sm'
                             : 'text-foreground hover:bg-secondary/50'
