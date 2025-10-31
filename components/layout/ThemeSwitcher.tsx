@@ -195,7 +195,9 @@ export function ThemeSwitcher() {
                         }`}
                         style={{ 
                           background: swatch.hex,
-                          ringColor: swatch.hex 
+                          ...(accent === swatch.color && {
+                            '--tw-ring-color': swatch.hex
+                          } as React.CSSProperties)
                         }}
                       />
                       {accent === swatch.color && (
