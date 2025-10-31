@@ -36,7 +36,7 @@ export function Header() {
             <motion.div
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-18 h-18 rounded-full overflow-hidden" // Circular container
+              className="relative w-28 h-18 overflow-hidden" // Circular container
             >
               <Image 
                 src="/portlogo.png" 
