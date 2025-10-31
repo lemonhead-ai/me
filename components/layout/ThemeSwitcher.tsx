@@ -5,11 +5,10 @@ import {
   Sun03Icon, 
   Moon02Icon, 
   Settings02Icon,
-  SparklesIcon,
-  CircleIcon,
-  FavouriteIcon,
+  StarHalfIcon,
+  SnowIcon,
+  BlurIcon,
   Cancel01Icon,
-  PaintBoardIcon
 } from 'hugeicons-react';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../providers/ThemeProvider';
@@ -29,10 +28,10 @@ export function ThemeSwitcher() {
     { color: 'green', label: 'Green', hex: '#10b981' },
   ];
 
-  const styles: { style: ThemeStyle; label: string; icon: typeof SparklesIcon }[] = [
-    { style: 'default', label: 'Default', icon: SparklesIcon },
-    { style: 'monochromatic', label: 'Mono', icon: CircleIcon },
-    { style: 'pixelated', label: 'Grainy', icon: FavouriteIcon },
+  const styles: { style: ThemeStyle; label: string; icon: typeof StarHalfIcon }[] = [
+    { style: 'default', label: 'Default', icon: StarHalfIcon },
+    { style: 'monochromatic', label: 'Mono-chrome', icon: SnowIcon },
+    { style: 'pixelated', label: 'Grainy', icon: BlurIcon },
   ];
 
   // Close on Escape
@@ -62,7 +61,7 @@ export function ThemeSwitcher() {
   }, [isOpen]);
 
   return (
-    <div className="relative flex items-center space-x-2" ref={containerRef}>
+    <div className="relative flex items-center -space-x-1" ref={containerRef}>
       {/* Mode Toggle Button */}
       <motion.button
         onClick={toggleMode}
@@ -119,9 +118,8 @@ export function ThemeSwitcher() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: DURATION }}
-              className="absolute right-0 mt-2 w-64 p-4 rounded-3xl border border-border
-                        bg-background/95 shadow-lg backdrop-opacity-100
-                        dark:bg-background/95 dark:text-foreground
+              className="absolute right-0 mt-2 w-44 p-6 rounded-3xl border border-border
+                        dark:bg-gray-600/90 backdrop-blur-4xl dark:text-foreground
                         text-foreground"
               style={{
                 zIndex: 50,

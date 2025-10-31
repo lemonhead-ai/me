@@ -77,7 +77,7 @@ export function Header() {
           </div>
 
           {/* Theme Switcher & Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center -space-x-1">
             <ThemeSwitcher />
             
             {/* Mobile Menu Button */}
