@@ -27,7 +27,7 @@ export function Footer() {
             <motion.div
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-20 h-20 rounded-full overflow-hidden" // Circular container
+              className="relative w-28 h-18 overflow-hidden"
             >
               <Image 
                 src="/portlogo.png" 
