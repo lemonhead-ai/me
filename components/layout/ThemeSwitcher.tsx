@@ -115,12 +115,13 @@ export function ThemeSwitcher() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.3 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/10 dark:bg-black/20 z-40"
+            style={{ backdropFilter: "blur(8px)" }}
           />
         )}
       </AnimatePresence>
@@ -133,19 +134,23 @@ export function ThemeSwitcher() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: DURATION, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed right-4 top-20 w-64 max-w-[85vw] bg-background/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border z-50"
+            className="fixed right-4 top-20 w-64 max-w-[85vw] bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 z-50"
+            style={{ 
+              backdropFilter: "blur(20px) saturate(180%)",
+              WebkitBackdropFilter: "blur(20px) saturate(180%)"
+            }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-3 border-b border-border">
-              <h3 className="text-base font-semibold text-foreground">Customize Theme</h3>
+            <div className="flex items-center justify-between p-3 border-b border-white/10 dark:border-gray-700/30">
+              <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">Customize Theme</h3>
               <motion.button
                 onClick={() => setIsOpen(false)}
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="p-1 rounded-lg hover:bg-secondary/80 transition-colors"
+                className="p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
               >
-                <Cancel01Icon size={18} className="text-muted-foreground" />
+                <Cancel01Icon size={18} className="text-gray-600 dark:text-gray-400" />
               </motion.button>
             </div>
 
@@ -159,7 +164,7 @@ export function ThemeSwitcher() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <PaintBoardIcon size={16} className="text-primary" />
-                  <h4 className="text-sm font-semibold text-foreground">Accent Color</h4>
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Accent Color</h4>
                 </div>
                 <div className="flex gap-2 justify-center py-2">
                   {accents.map((swatch, i) => (
