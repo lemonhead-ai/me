@@ -390,7 +390,7 @@ export default function Home() {
                   icon: ServiceIcon,
                   title: "Saas Solutions",
                   description:
-                    "Crafting scalable and reliable SaaS applications tailored to business needs. Frome concept to deployment, delivering solutions that drive success.",
+                    "Crafting scalable and reliable SaaS applications. From concept to deployment, delivering solutions that drive success.",
                 },
 
               ].map((skill, i) => (
