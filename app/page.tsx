@@ -15,6 +15,8 @@ import {
   Github01Icon,
   DribbbleIcon,
   SmartPhone01Icon,
+  ServiceIcon,
+  ApiIcon,
 } from "hugeicons-react";
 import {
   ScrollReveal,
@@ -378,6 +380,19 @@ export default function Home() {
                   description:
                     "Designing mobile-first applications that provide seamless user experiences on all screen sizes, acrooss various platforms.",
                 },
+                {
+                  icon: ApiIcon,
+                  title: "API Integration",
+                  description:
+                    "Integrating third-party services and APIs to enhance application functionality and user experience.",
+                },
+                {
+                  icon: ServiceIcon,
+                  title: "Saas Solutions",
+                  description:
+                    "Crafting scalable and reliable SaaS applications tailored to business needs",
+                },
+
               ].map((skill, i) => (
                 <StaggerItem key={i}>
                   <HoverScale>
