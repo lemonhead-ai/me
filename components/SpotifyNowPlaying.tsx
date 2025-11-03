@@ -22,7 +22,7 @@ export function SpotifyNowPlaying() {
   useEffect(() => {
   const fetchNowPlaying = async () => {
     try {
-      const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+      const response = await fetch('/api/spotify/currently-playing', {
         cache: 'no-store',
       });
 

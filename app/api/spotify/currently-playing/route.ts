@@ -1,4 +1,4 @@
-// app/api/spotify/now-playing/route.ts
+// app/api/spotify/currently-playing/route.ts
 import { NextResponse } from 'next/server';
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;

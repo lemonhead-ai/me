@@ -62,15 +62,14 @@ export function ThemeSwitcher() {
 
   return (
     <div className="relative flex items-center -space-x-1" ref={containerRef}>
-      {/* Mode Toggle Button */}
+      {/* Theme Toggle Button */}
       <motion.button
         onClick={toggleMode}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
         className="p-2 rounded-3xl hover:bg-secondary/50 transition-colors"
-        aria-label="Toggle theme mode"
-        suppressHydrationWarning
+        aria-label="Toggle theme"
       >
         <AnimatePresence mode="wait" initial={false}>
           {mode === 'dark' ? (
@@ -119,8 +118,7 @@ export function ThemeSwitcher() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: DURATION }}
               className="absolute right-0 mt-2 w-44 p-6 rounded-3xl border border-border
-                        dark:bg-gray-600/90 backdrop-blur-4xl dark:text-foreground
-                        text-foreground"
+                        bg-background/90 backdrop-blur-xl text-foreground shadow-lg"
               style={{
                 zIndex: 50,
               }}
@@ -130,6 +128,7 @@ export function ThemeSwitcher() {
                 onClick={() => setIsOpen(false)}
                 className="absolute top-2 right-2 p-1 rounded-3xl 
                           hover:bg-secondary/50 transition-colors"
+                aria-label="Close settings"
               >
                 <Cancel01Icon size={20} className="text-foreground" />
               </button>
@@ -148,6 +147,7 @@ export function ThemeSwitcher() {
                                   hover:scale-110`}
                         style={{ backgroundColor: hex }}
                         title={label}
+                        aria-label={`Select ${label} accent`}
                       />
                     ))}
                   </div>
@@ -161,8 +161,9 @@ export function ThemeSwitcher() {
                         key={styleOption}
                         onClick={() => setStyle(styleOption)}
                         className={`p-2 rounded-3xl transition-colors
-                                  ${style === styleOption ? 'bg-accent text-accent-foreground' : 'hover:bg-secondary/50'}}`}
+                                  ${style === styleOption ? 'bg-accent text-accent-foreground' : 'hover:bg-secondary/50'}`}
                         title={label}
+                        aria-label={`Select ${label} style`}
                       >
                         <Icon size={24} />
                       </button>
