@@ -17,7 +17,7 @@ export function SpotifyMiniWidget() {
   useEffect(() => {
     const fetchNowPlaying = async () => {
   try {
-    const response = await fetch('/api/spotify/now-playing');
+    const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing');
     
     if (response.status === 204) {
       setTrack(null);

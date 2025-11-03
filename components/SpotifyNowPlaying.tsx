@@ -22,7 +22,7 @@ export function SpotifyNowPlaying() {
   useEffect(() => {
   const fetchNowPlaying = async () => {
     try {
-      const response = await fetch('/api/spotify/now-playing', {
+      const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
         cache: 'no-store',
       });
 
@@ -79,7 +79,7 @@ export function SpotifyNowPlaying() {
         className="glass rounded-2xl p-4 border border-border"
       >
         <div className="flex items-center gap-3 text-muted">
-          <div className="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center">
+          <div className="w-16 h-16 bg-secondary rounded-3xl flex items-center justify-center">
             <SpotifyIcon size={24} />
           </div>
           <div className="flex-1">
