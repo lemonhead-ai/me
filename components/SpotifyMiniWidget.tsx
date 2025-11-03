@@ -48,7 +48,7 @@ export function SpotifyMiniWidget() {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       whileHover={{ scale: 1.05 }}
-      className="inline-flex items-center gap-1 px-1 py-2 rounded-full border border-border hover:border-primary/100 transition-colors text-sm"
+      className="inline-flex items-center gap-1 px-1 py-2 rounded-full border border-border hover:border-primary/200 transition-colors text-sm"
     >
       <SpotifyIcon size={16} className="text-sm" />
       <span className="text-foreground font-medium truncate max-w-[200px]">
