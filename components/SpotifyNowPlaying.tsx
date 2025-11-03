@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MusicNote03Icon, SpotifyIcon } from 'hugeicons-react';
+import { SpotifyIcon } from 'hugeicons-react';
 import Image from 'next/image';
 
 interface SpotifyTrack {
