@@ -16,18 +16,22 @@ export function SpotifyMiniWidget() {
 
   useEffect(() => {
     const fetchNowPlaying = async () => {
-      try {
-        const response = await fetch('/api/spotify/now-playing');
-        if (response.status === 204) {
-          setTrack(null);
-          return;
-        }
-        const data = await response.json();
-        setTrack(data);
-      } catch (err) {
-        console.error('Error fetching Spotify data:', err);
-      }
-    };
+  try {
+    const response = await fetch('/api/spotify/now-playing');
+    
+    if (response.status === 204) {
+      setTrack(null);
+      return;
+    }
+
+    if (!response.ok) return; // silently ignore errors
+
+    const data = await response.json();
+    setTrack(data);
+  } catch (err) {
+    console.error('Error in mini widget:', err);
+  }
+};
 
     fetchNowPlaying();
     const interval = setInterval(fetchNowPlaying, 30000);

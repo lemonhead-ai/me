@@ -20,37 +20,38 @@ export function SpotifyNowPlaying() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchNowPlaying = async () => {
-      try {
-        const response = await fetch('/api/spotify/now-playing');
-        if (response.status === 204) {
-          // No track currently playing
-          setTrack(null);
-          setIsLoading(false);
-          return;
-        }
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch');
-        }
+  const fetchNowPlaying = async () => {
+    try {
+      const response = await fetch('/api/spotify/now-playing', {
+        cache: 'no-store',
+      });
 
-        const data = await response.json();
-        setTrack(data);
-        setError(false);
-      } catch (err) {
-        console.error('Error fetching Spotify data:', err);
-        setError(true);
-      } finally {
-        setIsLoading(false);
+      if (response.status === 204) {
+        setTrack(null);
+        return;
       }
-    };
 
-    fetchNowPlaying();
-    // Poll every 30 seconds
-    const interval = setInterval(fetchNowPlaying, 30000);
+      if (!response.ok) {
+        console.warn('Spotify API responded with:', response.status);
+        setError(true);
+        return;
+      }
 
-    return () => clearInterval(interval);
-  }, []);
+      const data = await response.json();
+      setTrack(data);
+      setError(false);
+    } catch (err) {
+      console.error('Network error fetching Spotify:', err);
+      setError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchNowPlaying();
+  const interval = setInterval(fetchNowPlaying, 30000);
+  return () => clearInterval(interval);
+}, []);
 
   if (isLoading) {
     return (
