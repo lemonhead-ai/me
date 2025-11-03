@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Portfolio - Martin Mwai',
-  description: 'Software developer portfolio showcasing projects and skills',
+  description: 'Software developer portfolio showcasing projects, skills and contatct information.',
   keywords: ['portfolio', 'software developer', 'web development', 'projects'],
   authors: [{ name: 'Martin Mwai', url: 'https://martinmwai.vercel.app' }],
   openGraph: {
