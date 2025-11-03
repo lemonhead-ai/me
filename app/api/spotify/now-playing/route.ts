@@ -4,6 +4,11 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
+interface SpotifyArtist {
+  name: string;
+  id: string;
+}
+
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
@@ -55,7 +60,7 @@ export async function GET() {
 
     const isPlaying = song.is_playing;
     const title = song.item.name;
-    const artist = song.item.artists.map((artist: any) => artist.name).join(', ');
+    const artist = song.item.artists.map((artist: SpotifyArtist) => artist.name).join(', ');
     const album = song.item.album.name;
     const albumImageUrl = song.item.album.images[0].url;
     const songUrl = song.item.external_urls.spotify;
