@@ -47,7 +47,6 @@ export function Header() {
             </motion.div>
           </Link>
 
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
@@ -75,6 +74,7 @@ export function Header() {
               </MagneticButton>
             ))}
           </div>
+          <SpotifyMiniWidget />
 
           {/* Theme Switcher & Mobile Menu */}
           <div className="flex items-center -space-x-1">

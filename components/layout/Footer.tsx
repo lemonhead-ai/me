@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-{/* import { SpotifyMiniWidget } from '../SpotifyMiniWidget'; */}
 import { SpotifyNowPlaying } from '../SpotifyNowPlaying';
 import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon } from 'hugeicons-react';
 import { HoverScale } from '../animations/AdvancedAnimations';
