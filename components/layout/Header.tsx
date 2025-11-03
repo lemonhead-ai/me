@@ -16,7 +16,7 @@ const navItems = [
   { name: 'Projects', path: '/projects' },
   { name: 'Contact', path: '/contact' },
 ];
- <SpotifyMiniWidget />
+
 
 export function Header() {
   const pathname = usePathname();
@@ -74,10 +74,13 @@ export function Header() {
               </MagneticButton>
             ))}
           </div>
+          <div className="space-x-2">
           <SpotifyMiniWidget />
-
+          </div>
+         
           {/* Theme Switcher & Mobile Menu */}
           <div className="flex items-center -space-x-1">
+          
             <ThemeSwitcher />
             
             {/* Mobile Menu Button */}
