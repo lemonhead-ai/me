@@ -1,9 +1,9 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sun03Icon, 
-  Moon02Icon, 
+import {
+  Sun03Icon,
+  Moon02Icon,
   Settings02Icon,
   StarHalfIcon,
   SnowIcon,
@@ -17,11 +17,11 @@ import type { AccentColor, ThemeStyle } from '@/lib/themes';
 const DURATION = 0.3;
 
 export function ThemeSwitcher() {
-  const { mode, accent, style, toggleMode, setAccent, setStyle } = useTheme();
+  const { mode, accent, style, toggleMode, setAccent, setStyle, mounted } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
+ 
   const accents: { color: AccentColor; label: string; hex: string }[] = [
     { color: 'purple', label: 'Purple', hex: '#a855f7' },
     { color: 'blue', label: 'Blue', hex: '#3b82f6' },
@@ -71,29 +71,36 @@ export function ThemeSwitcher() {
         className="p-2 rounded-3xl hover:bg-secondary/50 transition-colors"
         aria-label="Toggle theme"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {mode === 'dark' ? (
-            <motion.div
-              key="moon"
-              initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-              animate={{ rotate: 0, opacity: 1, scale: 1 }}
-              exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <Moon02Icon size={24} className="text-foreground" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="sun"
-              initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
-              animate={{ rotate: 0, opacity: 1, scale: 1 }}
-              exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <Sun03Icon size={24} className="text-foreground" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Only render icon after mount to prevent hydration mismatch */}
+        {mounted && (
+          <AnimatePresence mode="wait" initial={false}>
+            {mode === 'dark' ? (
+              <motion.div
+                key="moon"
+                initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                <Moon02Icon size={24} className="text-foreground" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="sun"
+                initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                <Sun03Icon size={24} className="text-foreground" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
+        {/* Render a placeholder during SSR to maintain layout */}
+        {!mounted && (
+          <div style={{ width: 24, height: 24 }} />
+        )}
       </motion.button>
 
       {/* Settings Button and Overlay */}

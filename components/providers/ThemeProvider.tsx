@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { applyTheme, defaultTheme, ThemeMode, AccentColor, ThemeStyle, getThemeKey } from '@/lib/themes';
 
 interface ThemeContextType {
@@ -13,32 +13,39 @@ interface ThemeContextType {
   setAccent: (accent: AccentColor) => void;
   setStyle: (style: ThemeStyle) => void;
   toggleMode: () => void;
+  mounted: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Initialize from localStorage lazily
-  const [themeState, setThemeState] = useState(() => {
-    if (typeof window === 'undefined') return {
-      currentTheme: defaultTheme,
-      mode: 'dark' as ThemeMode,
-      accent: 'purple' as AccentColor,
-      style: 'default' as ThemeStyle,
-    };
+  // Always initialize with default values to ensure server/client match
+  const [themeState, setThemeState] = useState({
+    currentTheme: defaultTheme,
+    mode: 'dark' as ThemeMode,
+    accent: 'purple' as AccentColor,
+    style: 'default' as ThemeStyle,
+  });
 
+  const [mounted, setMounted] = useState(false);
+
+  // Load theme from localStorage after mount (client-side only)
+  useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || defaultTheme;
     const savedStyle = (localStorage.getItem('theme-style') || 'default') as ThemeStyle;
     const [savedMode, savedAccent] = savedTheme.split('-') as [ThemeMode, AccentColor];
+
     applyTheme(savedTheme, savedStyle);
-    
-    return {
+
+    setThemeState({
       currentTheme: savedTheme,
       mode: savedMode,
       accent: savedAccent,
       style: savedStyle,
-    };
-  });
+    });
+
+    setMounted(true);
+  }, []);
 
   const { currentTheme, mode, accent, style } = themeState;
 
@@ -51,15 +58,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   const setMode = (newMode: ThemeMode) => setTheme(getThemeKey(newMode, accent));
-  
+
   const setAccent = (newAccent: AccentColor) => setTheme(getThemeKey(mode, newAccent));
-  
+
   const setStyle = (newStyle: ThemeStyle) => {
     localStorage.setItem('theme-style', newStyle);
     applyTheme(currentTheme, newStyle);
     setThemeState({ ...themeState, style: newStyle });
   };
-  
+
   const toggleMode = () => setMode(mode === 'dark' ? 'light' : 'dark');
 
   return (
@@ -74,6 +81,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setAccent,
         setStyle,
         toggleMode,
+        mounted,
       }}
     >
       {children}

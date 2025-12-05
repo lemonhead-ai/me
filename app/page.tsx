@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import dynamic from 'next/dynamic';
 
 import {
   ArrowUpRight01Icon,
@@ -27,7 +28,26 @@ import {
   StaggerItem,
 } from "@/components/animations/AdvancedAnimations";
 
-// Dynamic Blob SVG Component
+// Dynamic import for Lanyard (prevents SSR issues)
+const Lanyard = dynamic(() => import('@/components/3d/lanyard'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-muted text-sm"
+      >
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+          <span>Loading 3D experience...</span>
+        </div>
+      </motion.div>
+    </div>
+  ),
+});
+
+// Dynamic Blob SVG Component (for mobile only now)
 const BlobSVG = ({ id, viewBox, className }: { id: string; viewBox: string; className?: string }) => {
   return (
     <svg
@@ -116,7 +136,7 @@ export default function Home() {
               </div>
 
               {/* Blob + profile (mobile) */}
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 ml-4 flex-shrink-0">
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 ml-4 shrink-0">
                 <BlobSVG id="mobile" viewBox="0 0 200 200" />
 
                 <div
@@ -281,46 +301,27 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Profile Image with Blob Shape - Right Side */}
+            {/* 3D Lanyard - Right Side */}
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1.5 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="relative w-90 h-90 lg:w-80 lg:h-80"
+                className="relative w-full h-[600px]"
               >
-                <BlobSVG id="desktop" viewBox="0 0 200 -179" />
+                <Lanyard 
+                  position={[0, 0, 20]} 
+                  gravity={[0, -40, 0]} 
+                  fov={20}
+                  transparent={true}
+                />
 
-                <div
-                  className="relative w-50 h-48 overflow-hidden"
-                  style={{
-                    clipPath: "url(#blob-clip-desktop)",
-                    WebkitClipPath: "url(#blob-clip-desktop)",
-                  }}
-                >
-                  <img
-                    src="/portnew.png"
-                    alt="Martin Mwai"
-                    className="w-full h-full object-cover object-center"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLElement).style.display = "none";
-                      const fallback = e.currentTarget.nextElementSibling;
-                      if (fallback) (fallback as HTMLElement).style.display = "flex";
-                    }}
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center backdrop-blur-sm"
-                    style={{ display: "none" }}
-                  >
-                    <span className="text-6xl font-bold text-primary">African Giant</span>
-                  </div>
-                </div>
-
+                {/* Floating decorative elements */}
                 <FloatingElement>
-                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-4xl" />
+                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-4xl pointer-events-none" />
                 </FloatingElement>
                 <FloatingElement>
-                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full blur-xl" />
+                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full blur-xl pointer-events-none" />
                 </FloatingElement>
               </motion.div>
             </div>
@@ -378,7 +379,7 @@ export default function Home() {
                   icon: SmartPhone01Icon,
                   title: "Mobile Development",
                   description:
-                    "Designing mobile-first applications that provide seamless user experiences on all screen sizes, acrooss various platforms.",
+                    "Designing mobile-first applications that provide seamless user experiences on all screen sizes, across various platforms.",
                 },
                 {
                   icon: ApiIcon,
@@ -413,7 +414,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10" />
+        <div className="absolute inset-0 bg-linear-to-r from-primary/10 via-accent/10 to-primary/10" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
