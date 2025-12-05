@@ -222,11 +222,11 @@ Contributions, issues, and feature requests are welcome!
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Martin Mwai**
 - GitHub: [@lemonhead-ai](https://github.com/lemonhead-ai)
 - LinkedIn: [Martin Mwai](https://linkedin.com/in/martinmwai)
 - Website: [yourwebsite.com](https://yourwebsite.com)
 
 ---
 
-Made with ❤️ using Next.js and Framer Motion by lemonlabs
+Made with ❤️ by /mrtn.
