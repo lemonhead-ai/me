@@ -48,6 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Additional meta tags for broader browser support */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-navbutton-color" content="#0f0f0f" />
+        {/* Google AdSense verification */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1347604830418650" crossOrigin="anonymous"></script>
       </head>
       <body
         className={`${inter.className} bg-background text-foreground antialiased`}
