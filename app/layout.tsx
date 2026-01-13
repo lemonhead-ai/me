@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     'Software developer portfolio showcasing projects, skills and contact information.',
   keywords: ['portfolio', 'software developer', 'web development', 'projects'],
-  authors: [{ name: 'Martin Mwai', url: 'https://martinmwai.vercel.app' }],
+  authors: [{ name: 'Martin Mwai J.', url: 'https://martinmwai.vercel.app' }],
   openGraph: {
     title: 'Portfolio - Martin Mwai',
     description: 'Software developer portfolio',
