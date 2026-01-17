@@ -31,13 +31,16 @@ function BandInner() {
   const { nodes, materials } = useGLTF('/lanyard/card.glb') as any;
   const texture = useTexture('/lanyard/lanyard.jpeg');
 
+  // Optimize texture settings for better quality and proper aspect ratio
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
   texture.anisotropy = 16;
+  texture.minFilter = THREE.LinearMipmapLinearFilter;
+  texture.magFilter = THREE.LinearFilter;
   texture.rotation = Math.PI; // 180 degrees
   texture.center.set(0.5, 0.5); // Rotate around center
-  // Scale and position the image to fit the card properly
-  texture.repeat.set(1, 1.5); // Scale up slightly to cover the card
-  texture.offset.set(0, -0.25); // Center the image
+  // Adjust to fit the card without stretching or cropping
+  texture.repeat.set(1, 1); // Keep original aspect ratio
+  texture.offset.set(0, 0); // No offset to show full image
   texture.needsUpdate = true;
 
   const band = useRef<THREE.Mesh>(null!);
@@ -124,7 +127,7 @@ function BandInner() {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, 8, 0]}>
         <RigidBody ref={fixed} type="fixed" colliders={false} />
 
         <RigidBody position={[0.5, 0, 0]} ref={j1} colliders={false} canSleep angularDamping={4} linearDamping={4}>
