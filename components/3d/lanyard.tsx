@@ -214,7 +214,7 @@ function LoadingFallback() {
 export default function Lanyard({
   position = [0, 0, 30],
   gravity = [0, -40, 0],
-  fov = 25,
+  fov = 20,
   transparent = true,
 }: LanyardProps) {
   return (
