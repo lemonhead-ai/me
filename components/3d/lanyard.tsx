@@ -33,11 +33,11 @@ function BandInner() {
 
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
   texture.anisotropy = 16;
-  texture.rotation = Math.PI; // 180 degrees
+  //texture.rotation = Math.PI; // 180 degrees
   texture.center.set(0.5, 0.5); // Rotate around center
   // Scale and position the image to fit the card properly
-  texture.repeat.set(1.2, 1.2); // Scale up slightly to cover the card
-  texture.offset.set(-0.3, -0.1); // Center the image
+  texture.repeat.set(1, 1.5); // Scale up slightly to cover the card
+  texture.offset.set(0, -0.25); // Center the image
   texture.needsUpdate = true;
 
   const band = useRef<THREE.Mesh>(null!);
