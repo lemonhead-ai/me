@@ -33,7 +33,7 @@ function BandInner() {
 
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
   texture.anisotropy = 16;
-  //texture.rotation = Math.PI; // 180 degrees
+  texture.rotation = Math.PI; // 180 degrees
   texture.center.set(0.5, 0.5); // Rotate around center
   // Scale and position the image to fit the card properly
   texture.repeat.set(1, 1.5); // Scale up slightly to cover the card
@@ -214,7 +214,7 @@ function LoadingFallback() {
 export default function Lanyard({
   position = [0, 0, 30],
   gravity = [0, -40, 0],
-  fov = 20,
+  fov = 30,
   transparent = true,
 }: LanyardProps) {
   return (
