@@ -37,10 +37,10 @@ function BandInner() {
   texture.minFilter = THREE.LinearMipmapLinearFilter;
   texture.magFilter = THREE.LinearFilter;
   texture.rotation = Math.PI; // 180 degrees
-  texture.center.set(0.5, 0.5); // Rotate around center
+  texture.center.set(0.5, 0.37); // Rotate around center
   // Adjust to fit the card without stretching or cropping
-  texture.repeat.set(-1, 1); // Keep original aspect ratio
-  texture.offset.set(0, 0); // No offset to show full image
+  texture.repeat.set(-1.2, 1); // Keep original aspect ratio
+  texture.offset.set(0.2, 0.1); // No offset to show full image
   texture.needsUpdate = true;
 
   const band = useRef<THREE.Mesh>(null!);
@@ -127,7 +127,7 @@ function BandInner() {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[-1, 4, 0]}>
         <RigidBody ref={fixed} type="fixed" colliders={false} />
 
         <RigidBody position={[0.5, 0, 0]} ref={j1} colliders={false} canSleep angularDamping={4} linearDamping={4}>
