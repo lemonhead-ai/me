@@ -39,7 +39,7 @@ function BandInner() {
   texture.rotation = Math.PI; // 180 degrees
   texture.center.set(0.5, 0.5); // Rotate around center
   // Adjust to fit the card without stretching or cropping
-  texture.repeat.set(1, 1); // Keep original aspect ratio
+  texture.repeat.set(-1, 1); // Keep original aspect ratio
   texture.offset.set(0, 0); // No offset to show full image
   texture.needsUpdate = true;
 
