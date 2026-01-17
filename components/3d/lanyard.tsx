@@ -124,7 +124,7 @@ function BandInner() {
 
   return (
     <>
-      <group position={[0, 8, 0]}>
+      <group position={[0, 4, 0]}>
         <RigidBody ref={fixed} type="fixed" colliders={false} />
 
         <RigidBody position={[0.5, 0, 0]} ref={j1} colliders={false} canSleep angularDamping={4} linearDamping={4}>
