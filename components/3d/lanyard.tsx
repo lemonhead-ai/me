@@ -124,7 +124,7 @@ function BandInner() {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, 8, 0]}>
         <RigidBody ref={fixed} type="fixed" colliders={false} />
 
         <RigidBody position={[0.5, 0, 0]} ref={j1} colliders={false} canSleep angularDamping={4} linearDamping={4}>
@@ -214,7 +214,7 @@ function LoadingFallback() {
 export default function Lanyard({
   position = [0, 0, 30],
   gravity = [0, -40, 0],
-  fov = 20,
+  fov = 25,
   transparent = true,
 }: LanyardProps) {
   return (
