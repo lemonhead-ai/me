@@ -124,12 +124,12 @@ export default function ValentinePage() {
                         </motion.div>
 
                         <h2 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-6 font-serif">
-                            I Knew You'd Say Yes!
+                            I Knew You'd Say Yes!🫦
                         </h2>
 
                         <p className="text-xl md:text-3xl text-gray-900 leading-relaxed font-medium font-serif italic">
                             You make every day feel like Valentine's Day. <br />
-                            I love you! 💖🌹
+                            I love you Sharon! 💖🌹
                         </p>
                     </motion.div>
                 )}
