@@ -75,7 +75,7 @@ export default function ValentinePage() {
                             transition={{ repeat: Infinity, duration: 1.5 }}
                             className="mb-8 text-red-600"
                         >
-                            <FavouriteIcon size={80} variant="solid" className="fill-current drop-shadow-xl" />
+                            <FavouriteIcon size={80} className="fill-current drop-shadow-xl" />
                         </motion.div>
 
                         <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-purple-700 mb-12 drop-shadow-sm font-serif p-4">
@@ -119,7 +119,7 @@ export default function ValentinePage() {
                             className="mb-8 inline-block"
                         >
                             <div className="relative">
-                                <FavouriteIcon size={120} variant="solid" className="text-red-500 drop-shadow-2xl animate-pulse" />
+                                <FavouriteIcon size={120} className="text-red-500 drop-shadow-2xl animate-pulse" />
                             </div>
                         </motion.div>
 
