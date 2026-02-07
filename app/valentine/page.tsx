@@ -100,7 +100,7 @@ export default function ValentinePage() {
                                 className="absolute md:static px-8 py-4 bg-white/50 backdrop-blur-sm text-gray-600 rounded-full text-xl font-bold shadow-sm border border-white/50 cursor-not-allowed"
                                 style={{ left: '60%' }} // Initial position hint for absolute
                             >
-                                No 😢
+                                No!!🤮
                             </motion.button>
                         </div>
                     </motion.div>
