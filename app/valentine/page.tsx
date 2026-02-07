@@ -58,8 +58,8 @@ export default function ValentinePage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-red-200 to-purple-300 overflow-hidden relative">
             {/* Decorative background elements */}
-            <div className="absolute top-10 left-10 text-pink-400 opacity-50 text-6xl animate-bounce">💖</div>
-            <div className="absolute bottom-20 right-20 text-purple-400 opacity-50 text-6xl animate-pulse">💜</div>
+            <div className="absolute top-10 left-10 text-pink-400 opacity-50 text-8xl animate-bounce">💖</div>
+            <div className="absolute bottom-20 right-20 text-purple-400 opacity-50 text-8xl animate-pulse">💜</div>
 
             <AnimatePresence mode="wait">
                 {!accepted ? (
@@ -87,7 +87,7 @@ export default function ValentinePage() {
                                 onClick={() => setAccepted(true)}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-10 py-5 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-full text-2xl font-bold shadow-lg hover:shadow-2xl transition-all z-20"
+                                className="px-10 py-5 bg-gradient-to-r from-red-300 to-pink-400 text-white rounded-full text-2xl font-bold shadow-lg hover:shadow-2xl transition-all z-20"
                             >
                                 Yes! ❤️
                             </motion.button>
