@@ -15,7 +15,7 @@ const navItems = [
   { name: 'About', path: '/about' },
   { name: 'Projects', path: '/projects' },
   { name: 'Contact', path: '/contact' },
-  { name: 'Will you be my Valentine?', path: '/valentine' },
+  { name: 'FAQ', path: '/contact' },
 ];
 
 
