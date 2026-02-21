@@ -69,6 +69,7 @@
 }
 
 @layer utilities {
+
   /* Glass morphism */
   .glass {
     background: rgb(var(--card) / 0.8);
@@ -79,22 +80,20 @@
   /* Gradient text - iOS Safari compatible */
   .gradient-text {
     display: inline-block;
-    background: linear-gradient(
-      to right,
-      rgb(var(--primary)),
-      rgb(var(--accent)),
-      rgb(var(--primary-light))
-    );
+    background: linear-gradient(to right,
+        rgb(var(--primary)),
+        rgb(var(--accent)),
+        rgb(var(--primary-light)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    
+
     /* Force hardware acceleration for iOS */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
-    
+
     /* Fallback for browsers that don't support background-clip: text */
     @supports not (-webkit-background-clip: text) {
       background: none;
@@ -148,6 +147,7 @@
     background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
   }
 }
@@ -162,6 +162,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -184,6 +185,7 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -195,12 +197,12 @@
   }
 
   /* Theme Styles */
-  
+
   /* Monochromatic Style - Desaturated colors */
   .style-monochromatic {
     filter: grayscale(0.7);
   }
-  
+
   .style-monochromatic .gradient-text,
   .style-monochromatic [class*="gradient"] {
     filter: grayscale(0.5);
@@ -222,16 +224,47 @@
   }
 
   @keyframes grain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(0%, 0%); }
-    20% { transform: translate(0%, 0%); }
-    30% { transform: translate(0%, 0%); }
-    40% { transform: translate(0%, 0%); }
-    50% { transform: translate(0%, 0%); }
-    60% { transform: translate(0%, 0%); }
-    70% { transform: translate(0%, 0%); }
-    80% { transform: translate(0%, 0%); }
-    90% { transform: translate(0%, 0%); }
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    10% {
+      transform: translate(0%, 0%);
+    }
+
+    20% {
+      transform: translate(0%, 0%);
+    }
+
+    30% {
+      transform: translate(0%, 0%);
+    }
+
+    40% {
+      transform: translate(0%, 0%);
+    }
+
+    50% {
+      transform: translate(0%, 0%);
+    }
+
+    60% {
+      transform: translate(0%, 0%);
+    }
+
+    70% {
+      transform: translate(0%, 0%);
+    }
+
+    80% {
+      transform: translate(0%, 0%);
+    }
+
+    90% {
+      transform: translate(0%, 0%);
+    }
   }
 
   /* Additional grainy texture for elements */
