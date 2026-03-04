@@ -51,7 +51,7 @@ export function Header() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => (
-                <MagneticButton key={item.path}>
+                <MagneticButton key={item.name}>
                   <Link href={item.path}>
                     <motion.div
                       className={`px-4 py-2 rounded-lg transition-colors relative ${pathname === item.path
@@ -118,7 +118,7 @@ export function Header() {
             <div className="flex-1 space-y-1 mt-2">
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.path}
+                  key={item.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
