@@ -16,12 +16,12 @@ import type { AccentColor, ThemeStyle } from '@/lib/themes';
 
 const DURATION = 0.3;
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | 'mobile' }) {
   const { mode, accent, style, toggleMode, setAccent, setStyle, mounted } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
- 
+
   const accents: { color: AccentColor; label: string; hex: string }[] = [
     { color: 'purple', label: 'Purple', hex: '#a855f7' },
     { color: 'blue', label: 'Blue', hex: '#3b82f6' },
@@ -59,6 +59,102 @@ export function ThemeSwitcher() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen]);
+
+  if (variant === 'mobile') {
+    return (
+      <div className="w-full flex flex-col space-y-4">
+        {/* Dark Mode Toggle Row */}
+        <div className="relative flex w-full p-1.5 bg-secondary/80 border border-border/50 rounded-3xl overflow-hidden shadow-inner">
+          {/* Animated Background */}
+          <motion.div
+            className="absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] bg-background border border-border/50 rounded-full shadow-md"
+            animate={{
+              x: mode === 'dark' ? '100%' : '0%',
+            }}
+            transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+          />
+
+          <button
+            onClick={() => mode !== 'light' && toggleMode()}
+            className={`relative flex-1 py-3 text-center text-sm font-semibold transition-colors z-10 ${mode === 'light' ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'
+              }`}
+            aria-label="Set light mode"
+          >
+            Light
+          </button>
+
+          <button
+            onClick={() => mode !== 'dark' && toggleMode()}
+            className={`relative flex-1 py-3 text-center text-sm font-semibold transition-colors z-10 ${mode === 'dark' ? 'text-foreground' : 'text-foreground/70 hover:text-foreground'
+              }`}
+            aria-label="Set dark mode"
+          >
+            Dark
+          </button>
+        </div>
+
+        {/* Preferences Accordion */}
+        <div className="w-full flex flex-col bg-secondary/20 rounded-2xl overflow-hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center justify-between w-full px-4 py-4"
+          >
+            <span className="text-lg font-medium">Preferences</span>
+            <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+              <Settings02Icon size={24} className="text-foreground/70" />
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="flex flex-col space-y-6 px-4 pb-6"
+              >
+                <div className="pt-4 border-t border-border/50">
+                  <h3 className="text-sm font-medium mb-3 text-foreground/70 text-center">Accent Color</h3>
+                  <div className="flex justify-center gap-4">
+                    {accents.map(({ color, label, hex }) => (
+                      <button
+                        key={color}
+                        onClick={() => setAccent(color)}
+                        className={`w-10 h-10 rounded-full transition-transform
+                                  ${accent === color ? 'scale-110 ring-4 ring-offset-4 ring-offset-background ring-accent' : ''}
+                                  hover:scale-110`}
+                        style={{ backgroundColor: hex }}
+                        title={label}
+                        aria-label={`Select ${label} accent`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium mb-3 text-foreground/70 text-center">Style</h3>
+                  <div className="flex justify-center gap-4">
+                    {styles.map(({ style: styleOption, label, icon: Icon }) => (
+                      <button
+                        key={styleOption}
+                        onClick={() => setStyle(styleOption)}
+                        className={`p-3 rounded-full transition-colors flex items-center justify-center
+                                  ${style === styleOption ? 'bg-accent text-accent-foreground' : 'bg-secondary/50 hover:bg-secondary'}`}
+                        title={label}
+                        aria-label={`Select ${label} style`}
+                      >
+                        <Icon size={24} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative flex items-center -space-x-1" ref={containerRef}>

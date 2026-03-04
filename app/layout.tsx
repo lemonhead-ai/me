@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ScrollProgress, MouseFollower } from '@/components/animations/AdvancedAnimations';
+import { ScrollProgress } from '@/components/animations/AdvancedAnimations';
 import { BrowserThemeColor } from '@/components/BrowserThemeColor'; // dynamic theme color
 
 const inter = Inter({ subsets: ['latin'] });
@@ -56,7 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <BrowserThemeColor />
           <ScrollProgress />
-          <MouseFollower />
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-1 pt-16">

@@ -19,12 +19,12 @@ export function PageTransition({ children }: { children: ReactNode }) {
 }
 
 // Scroll Reveal Animation
-export function ScrollReveal({ 
-  children, 
+export function ScrollReveal({
+  children,
   delay = 0,
-  direction = 'up' 
-}: { 
-  children: ReactNode; 
+  direction = 'up'
+}: {
+  children: ReactNode;
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
 }) {
@@ -79,11 +79,11 @@ export function MagneticButton({ children }: { children: ReactNode }) {
 }
 
 // Parallax Section
-export function ParallaxSection({ 
-  children, 
-  speed = 0.5 
-}: { 
-  children: ReactNode; 
+export function ParallaxSection({
+  children,
+  speed = 0.5
+}: {
+  children: ReactNode;
   speed?: number;
 }) {
   const ref = useRef(null);
@@ -119,11 +119,11 @@ export function ScrollProgress() {
 }
 
 // Stagger Children Animation
-export function StaggerContainer({ 
-  children, 
-  staggerDelay = 0.1 
-}: { 
-  children: ReactNode; 
+export function StaggerContainer({
+  children,
+  staggerDelay = 0.1
+}: {
+  children: ReactNode;
   staggerDelay?: number;
 }) {
   return (
@@ -209,11 +209,11 @@ export function FloatingElement({ children }: { children: ReactNode }) {
 }
 
 // Hover Scale Effect
-export function HoverScale({ 
-  children, 
-  scale = 1.05 
-}: { 
-  children: ReactNode; 
+export function HoverScale({
+  children,
+  scale = 1.05
+}: {
+  children: ReactNode;
   scale?: number;
 }) {
   return (
@@ -227,37 +227,6 @@ export function HoverScale({
   );
 }
 
-// Mouse Follow Cursor
-export function MouseFollower() {
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 1000 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
-    };
-
-    window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
-  }, []);
-
-  return (
-    <motion.div
-      className="fixed w-6 h-6 pointer-events-none z-50 mix-blend-difference"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-      }}
-    >
-      <div className="w-full h-full rounded-full bg-white/14 backdrop-blur-sm" />
-    </motion.div>
-  );
-}
 
 // Card Tilt Effect
 export function TiltCard({ children }: { children: ReactNode }) {
