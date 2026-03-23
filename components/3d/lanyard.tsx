@@ -121,7 +121,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
   const { nodes, materials } = useGLTF('/lanyard/card.glb') as any;
   const texture = useTexture('/lanyard/lanyard.png');
-  const cardTexture = useTexture('/portnew.png');
+  const cardTexture = useTexture('/me.JPG');
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([

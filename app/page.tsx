@@ -14,7 +14,7 @@ import {
   SparklesIcon,
   Linkedin02Icon,
   Github01Icon,
-  DribbbleIcon,
+  InstagramIcon,
   SmartPhone01Icon,
   ServiceIcon,
   ApiIcon,
@@ -112,13 +112,13 @@ export default function Home() {
 
                 <HoverScale>
                   <a
-                    href="https://dribbble.com/sacredlemon"
+                    href="https://www.instagram.com/its._lemonhead/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary hover:text-primary-dark transition-colors"
-                    aria-label="Dribbble"
+                    aria-label="Instagram"
                   >
-                    <DribbbleIcon size={20} />
+                    <InstagramIcon size={20} />
                   </a>
                 </HoverScale>
 
@@ -219,13 +219,13 @@ export default function Home() {
 
                 <HoverScale>
                   <a
-                    href="https://dribbble.com/sacredlemon"
+                    href="https://www.instagram.com/its._lemonhead/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary hover:text-primary-dark transition-colors"
-                    aria-label="Dribbble"
+                    aria-label="Instagram"
                   >
-                    <DribbbleIcon size={24} />
+                    <InstagramIcon size={24} />
                   </a>
                 </HoverScale>
 

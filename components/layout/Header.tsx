@@ -55,7 +55,7 @@ export function Header() {
                   <Link href={item.path}>
                     <motion.div
                       className={`px-4 py-2 rounded-lg transition-colors relative ${pathname === item.path
-                        ? 'text-primary'
+                        ? 'text-blue-500 dark:text-blue-400'
                         : 'text-foreground hover:text-primary'
                         }`}
                       whileHover={{ scale: 1.05 }}
@@ -65,7 +65,7 @@ export function Header() {
                       {pathname === item.path && (
                         <motion.div
                           layoutId="navbar-indicator"
-                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -128,7 +128,7 @@ export function Header() {
                     href={item.path}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-4 py-3 rounded-lg transition-colors ${pathname === item.path
-                      ? 'bg-primary/10 text-primary'
+                      ? 'bg-blue-500/10 text-blue-500 dark:text-blue-400 dark:bg-blue-400/10'
                       : 'text-foreground hover:bg-secondary'
                       }`}
                   >
