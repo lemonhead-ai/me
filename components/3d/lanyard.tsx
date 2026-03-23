@@ -153,6 +153,37 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
   ]);
 
   useEffect(() => {
+    if (nodes?.card?.geometry) {
+      const geometry = nodes.card.geometry;
+      geometry.computeBoundingBox();
+      const bbox = geometry.boundingBox;
+      
+      const width = bbox.max.x - bbox.min.x;
+      const height = bbox.max.y - bbox.min.y;
+      
+      const posAttribute = geometry.attributes.position;
+      const uvAttribute = geometry.attributes.uv;
+      
+      for (let i = 0; i < posAttribute.count; i++) {
+        const x = posAttribute.getX(i);
+        const y = posAttribute.getY(i);
+        const z = posAttribute.getZ(i);
+        
+        let u = (x - bbox.min.x) / width;
+        let v = (y - bbox.min.y) / height;
+        
+        // Ensure back side displays the image correctly mapped instead of stretched
+        if (z < 0) {
+          u = 1 - u; 
+        }
+        
+        uvAttribute.setXY(i, u, v);
+      }
+      uvAttribute.needsUpdate = true;
+    }
+  }, [nodes]);
+
+  useEffect(() => {
     if (hovered) {
       document.body.style.cursor = dragged ? 'grabbing' : 'grab';
       return () => {
