@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from '@/components/animations/AdvancedAnimations';
 import { BrowserThemeColor } from '@/components/BrowserThemeColor'; // dynamic theme color
 
-const inter = Inter({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 // ✅ Metadata (keep everything except themeColor + viewport)
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="msapplication-navbutton-color" content="#0f0f0f" />
       </head>
       <body
-        className={`${inter.className} bg-background text-foreground antialiased`}
+        className={`${spaceGrotesk.className} bg-background text-foreground antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>
