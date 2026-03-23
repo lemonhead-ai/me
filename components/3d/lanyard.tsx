@@ -135,6 +135,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
   // Fix image orientation on GLTF model
   cardTexture.flipY = false;
+  cardTexture.wrapS = THREE.RepeatWrapping;
+  cardTexture.wrapT = THREE.RepeatWrapping;
   // If the image is sideways instead of upside down, uncomment and adjust the rotation below:
   // cardTexture.center.set(0.5, 0.5);
   // cardTexture.rotation = Math.PI / 2; // (Math.PI / 2 is 90 degrees, Math.PI is 180 degrees)
