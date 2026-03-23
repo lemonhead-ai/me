@@ -169,8 +169,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
         const y = posAttribute.getY(i);
         const z = posAttribute.getZ(i);
         
-        let u = (x - bbox.min.x) / width;
-        let v = (y - bbox.min.y) / height;
+        let u = 1 - ((x - bbox.min.x) / width);
+        let v = 1 - ((y - bbox.min.y) / height);
         
         // Ensure back side displays the image correctly mapped instead of stretched
         if (z < 0) {
