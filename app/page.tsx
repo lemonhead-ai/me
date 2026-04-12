@@ -47,44 +47,7 @@ const Lanyard = dynamic(() => import('@/components/3d/lanyard'), {
   ),
 });
 
-// Dynamic Blob SVG Component (for mobile only now)
-const BlobSVG = ({ id, viewBox, className }: { id: string; viewBox: string; className?: string }) => {
-  return (
-    <svg
-      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
-      viewBox={viewBox}
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <defs>
-        <linearGradient id={`blob-gradient-${id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{ stopColor: `rgb(var(--blob-gradient-start))` }} />
-          <stop offset="50%" style={{ stopColor: `rgb(var(--blob-gradient-mid))` }} />
-          <stop offset="100%" style={{ stopColor: `rgb(var(--blob-gradient-end))` }} />
-        </linearGradient>
 
-        <clipPath
-          id={`blob-clip-${id}`}
-          clipPathUnits={id === 'mobile' ? 'objectBoundingBox' : undefined}
-          transform={id === 'mobile' ? 'scale(0.005, 0.005)' : undefined}
-        >
-          <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-              130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-              97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-              0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-        </clipPath>
-      </defs>
-
-      <path
-        d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-              130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-              97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-              0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-        fill={`url(#blob-gradient-${id})`}
-      />
-    </svg>
-  );
-};
 
 export default function Home() {
   return (
@@ -94,10 +57,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
           {/* MOBILE LAYOUT */}
-          <div className="lg:hidden flex flex-col -mt-20 items-center gap-8 py-8">
-            <div className="w-full flex items-start gap-6 px-4">
-              {/* Social icons (mobile) */}
-              <div className="flex flex-col space-y-4">
+          <div className="lg:hidden flex flex-col items-center gap-4 py-8">
+            {/* Lanyard + social icons side by side */}
+            <div className="w-full flex items-center gap-3 px-2">
+              {/* Social icons — left column */}
+              <div className="flex flex-col space-y-4 shrink-0">
                 <HoverScale>
                   <a
                     href="https://www.linkedin.com/in/martinmwai"
@@ -135,24 +99,20 @@ export default function Home() {
                 </HoverScale>
               </div>
 
-              {/* Blob + profile (mobile) */}
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 ml-4 shrink-0">
-                <BlobSVG id="mobile" viewBox="0 0 200 200" />
-
-                <div
-                  className="absolute inset-0 w-full h-full"
-                  style={{
-                    clipPath: "url(#blob-clip-mobile)",
-                    WebkitClipPath: "url(#blob-clip-mobile)",
-                  }}
-                >
-                  <img
-                    src="/portnew.png"
-                    alt="Martin Mwai"
-                    className="w-full h-full object-cover object-center scale-110"
-                  />
-                </div>
-              </div>
+              {/* Lanyard — takes up remaining space */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="relative flex-1 h-[420px] sm:h-[500px]"
+              >
+                <Lanyard
+                  position={[0, 0, 20]}
+                  gravity={[0, -40, 0]}
+                  fov={20}
+                  transparent={true}
+                />
+              </motion.div>
             </div>
 
             {/* Text below on mobile */}
