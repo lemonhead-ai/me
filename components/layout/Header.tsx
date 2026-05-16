@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import { SpotifyMiniWidget } from '../SpotifyMiniWidget';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { MagneticButton } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
 import { useAuth, SignInButton, UserButton } from '@clerk/nextjs';
+import { images } from '@/lib/images';
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -26,7 +27,7 @@ export function Header() {
 
   return (
     <>
-      <motion.header
+      <m.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -36,19 +37,19 @@ export function Header() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative w-28 h-18 overflow-hidden" // Circular container
               >
                 <Image
-                  src="/portlogo.png"
+                  src={images.logo}
                   alt="Logo"
                   fill
                   sizes="112px"
                   className="object-cover object-center" // Fill and center within circle
                 />
-              </motion.div>
+              </m.div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -56,7 +57,7 @@ export function Header() {
               {navItems.map((item) => (
                 <MagneticButton key={item.name}>
                   <Link href={item.path}>
-                    <motion.div
+                    <m.div
                       className={`px-4 py-2 rounded-lg transition-colors relative ${pathname === item.path
                         ? 'text-blue-500 dark:text-blue-400'
                         : 'text-foreground hover:text-primary'
@@ -66,13 +67,13 @@ export function Header() {
                     >
                       {item.name}
                       {pathname === item.path && (
-                        <motion.div
+                        <m.div
                           layoutId="navbar-indicator"
                           className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
-                    </motion.div>
+                    </m.div>
                   </Link>
                 </MagneticButton>
               ))}
@@ -96,26 +97,26 @@ export function Header() {
               className="md:hidden relative z-50 p-2 text-foreground hover:text-primary transition-colors flex flex-col justify-center items-center gap-[5px] w-10 h-10"
               aria-label="Toggle mobile menu"
             >
-              <motion.span
+              <m.span
                 animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 className="w-6 h-0.5 bg-current rounded-full block"
               />
-              <motion.span
+              <m.span
                 animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                 className="w-6 h-0.5 bg-current rounded-full block"
               />
-              <motion.span
+              <m.span
                 animate={mobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 className="w-6 h-0.5 bg-current rounded-full block"
               />
             </button>
           </div>
         </nav>
-      </motion.header>
+      </m.header>
 
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -124,7 +125,7 @@ export function Header() {
           >
             <div className="flex-1 space-y-1 mt-2">
               {navItems.map((item, index) => (
-                <motion.div
+                <m.div
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -141,12 +142,12 @@ export function Header() {
                   >
                     {item.name}
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </div>
 
             {/* Mobile Theme Switcher & Auth */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
@@ -161,8 +162,8 @@ export function Header() {
                   <span className="text-sm font-medium text-foreground">Manage Account</span>
                 </div>
               )}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

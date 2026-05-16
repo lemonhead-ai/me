@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { 
   Mail01Icon, 
   Github01Icon, 
@@ -151,7 +151,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <motion.button
+                <m.button
                   type="submit"
                   disabled={status === 'sending' || status === 'sent'}
                   whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
@@ -167,16 +167,16 @@ export default function ContactPage() {
                     </>
                   )}
                   {status === 'error' && 'Try Again'}
-                </motion.button>
+                </m.button>
 
                 {status === 'sent' && (
-                  <motion.p
+                  <m.p
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center text-green-500 text-sm"
                   >
                     Thanks! I&apos;ll get back to you soon.
-                  </motion.p>
+                  </m.p>
                 )}
               </form>
             </div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   {socialLinks.map((link, i) => (
                     <HoverScale key={link.name}>
-                      <motion.a
+                      <m.a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -212,7 +212,7 @@ export default function ContactPage() {
                           <p className="font-medium text-foreground">{link.name}</p>
                           <p className="text-sm text-muted">{link.label}</p>
                         </div>
-                      </motion.a>
+                      </m.a>
                     </HoverScale>
                   ))}
                 </div>

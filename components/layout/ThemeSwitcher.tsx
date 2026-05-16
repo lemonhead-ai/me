@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   Sun03Icon,
   Moon02Icon,
@@ -66,7 +66,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
         {/* Dark Mode Toggle Row */}
         <div className="relative flex w-full p-1.5 bg-secondary/80 border border-border/50 rounded-3xl overflow-hidden shadow-inner">
           {/* Animated Background */}
-          <motion.div
+          <m.div
             className="absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] bg-background border border-border/50 rounded-full shadow-md"
             animate={{
               x: mode === 'dark' ? '100%' : '0%',
@@ -100,14 +100,14 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
             className="flex items-center justify-between w-full px-4 py-4"
           >
             <span className="text-lg font-medium">Preferences</span>
-            <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+            <m.div animate={{ rotate: isOpen ? 180 : 0 }}>
               <Settings02Icon size={24} className="text-foreground/70" />
-            </motion.div>
+            </m.div>
           </button>
 
           <AnimatePresence>
             {isOpen && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -148,7 +148,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -159,7 +159,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
   return (
     <div className="relative flex items-center -space-x-1" ref={containerRef}>
       {/* Theme Toggle Button */}
-      <motion.button
+      <m.button
         onClick={toggleMode}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -171,7 +171,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
         {mounted && (
           <AnimatePresence mode="wait" initial={false}>
             {mode === 'dark' ? (
-              <motion.div
+              <m.div
                 key="moon"
                 initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -179,9 +179,9 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <Moon02Icon size={24} className="text-foreground" />
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.div
+              <m.div
                 key="sun"
                 initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -189,7 +189,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <Sun03Icon size={24} className="text-foreground" />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         )}
@@ -197,11 +197,11 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
         {!mounted && (
           <div style={{ width: 24, height: 24 }} />
         )}
-      </motion.button>
+      </m.button>
 
       {/* Settings Button and Overlay */}
       <div className="relative">
-        <motion.button
+        <m.button
           ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.1 }}
@@ -211,11 +211,11 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
           aria-label="Open theme settings"
         >
           <Settings02Icon size={24} className="text-foreground" />
-        </motion.button>
+        </m.button>
 
         <AnimatePresence>
           {isOpen && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -274,7 +274,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

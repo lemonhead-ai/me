@@ -1,10 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { SpotifyNowPlaying } from '../SpotifyNowPlaying';
 import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon } from 'hugeicons-react';
 import { HoverScale } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
+import { images } from '@/lib/images';
 
 const socialLinks = [
   { name: 'GitHub', icon: Github01Icon, href: 'https://github.com/lemonhead-ai' },
@@ -23,18 +24,18 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <motion.div
+            <m.div
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               className="relative w-28 h-18 overflow-hidden"
             >
               <Image 
-                src="/portlogo.png" 
+                src={images.logo} 
                 alt="Logo" 
                 fill 
                 className="object-cover object-center" // Fill and center within circle
               />
-            </motion.div>
+            </m.div>
 
 
 
@@ -48,7 +49,7 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {['Home', 'About', 'Projects', 'Contact'].map((item, i) => (
-                <motion.li
+                <m.li
                   key={item}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -61,7 +62,7 @@ export function Footer() {
                   >
                     {item}
                   </a>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
           </div>
@@ -72,7 +73,7 @@ export function Footer() {
             <div className="flex space-x-4">
               {socialLinks.map((social, i) => (
                 <HoverScale key={social.name}>
-                  <motion.a
+                  <m.a
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -84,7 +85,7 @@ export function Footer() {
                     aria-label={social.name}
                   >
                     <social.icon size={20} className="text-primary" />
-                  </motion.a>
+                  </m.a>
                 </HoverScale>
               ))}
             </div>
@@ -93,7 +94,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -102,7 +103,7 @@ export function Footer() {
           <p className="text-muted text-sm">
             © {currentYear} martinmwai. All rights reserved.
           </p>
-        </motion.div>
+        </m.div>
       </div>
 
       {/** Spotify Now Playing Widget */}

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Github01Icon, Link01Icon, Calendar03Icon, Tag01Icon } from 'hugeicons-react';
 import { ProjectMeta } from '@/lib/mdx';
 import { TiltCard, HoverScale } from '../animations/AdvancedAnimations';
@@ -13,14 +13,14 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <TiltCard>
-      <motion.div
+      <m.div
         whileHover={{ scale: 1.02 }}
         className="glass rounded-2xl overflow-hidden h-full flex flex-col group"
       >
         {/* Project Image */}
         {project.image && (
           <div className="relative h-48 overflow-hidden bg-secondary">
-            <motion.img
+            <m.img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
@@ -101,7 +101,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </TiltCard>
   );
 }

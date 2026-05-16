@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   Facebook01Icon,
   NewTwitterIcon,
@@ -41,7 +41,7 @@ export function ShareButtons({ title }: { title: string }) {
     <div className="flex flex-col gap-4">
       <span className="text-sm font-semibold text-muted uppercase tracking-wider mb-2">Share this article</span>
       <div className="flex flex-row md:flex-col gap-3">
-        <motion.a
+        <m.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           href={shareLinks.x}
@@ -51,9 +51,9 @@ export function ShareButtons({ title }: { title: string }) {
           aria-label="Share on X"
         >
           <NewTwitterIcon size={20} />
-        </motion.a>
+        </m.a>
 
-        <motion.a
+        <m.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           href={shareLinks.facebook}
@@ -63,9 +63,9 @@ export function ShareButtons({ title }: { title: string }) {
           aria-label="Share on Facebook"
         >
           <Facebook01Icon size={20} />
-        </motion.a>
+        </m.a>
 
-        <motion.a
+        <m.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           href={shareLinks.reddit}
@@ -75,9 +75,9 @@ export function ShareButtons({ title }: { title: string }) {
           aria-label="Share on Reddit"
         >
           <RedditIcon size={20} />
-        </motion.a>
+        </m.a>
 
-        <motion.a
+        <m.a
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           href={shareLinks.whatsapp}
@@ -87,9 +87,9 @@ export function ShareButtons({ title }: { title: string }) {
           aria-label="Share on WhatsApp"
         >
           <WhatsappIcon size={20} />
-        </motion.a>
+        </m.a>
 
-        <motion.button
+        <m.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={shareNative}
@@ -97,7 +97,7 @@ export function ShareButtons({ title }: { title: string }) {
           aria-label="Share"
         >
           <Share01Icon size={20} />
-        </motion.button>
+        </m.button>
       </div>
     </div>
   );

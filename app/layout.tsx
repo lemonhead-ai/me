@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from '@/components/animations/AdvancedAnimations';
 import { BrowserThemeColor } from '@/components/BrowserThemeColor'; // dynamic theme color
+import { MotionProvider } from '@/components/providers/MotionProvider';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
@@ -60,17 +61,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           suppressHydrationWarning
         >
           <ThemeProvider>
-            <BrowserThemeColor />
-            <ScrollProgress />
-            <div className="flex flex-col min-h-screen">
-              <Header />
-            <main className="flex-1 pt-16">
-              {children}
-              <SpeedInsights />
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+            <MotionProvider>
+              <BrowserThemeColor />
+              <ScrollProgress />
+              <div className="flex flex-col min-h-screen">
+                <Header />
+              <main className="flex-1 pt-16">
+                {children}
+                <SpeedInsights />
+              </main>
+              <Footer />
+            </div>
+            </MotionProvider>
+          </ThemeProvider>
       </body>
     </html>
     </ClerkProvider>

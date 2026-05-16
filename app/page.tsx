@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
 
@@ -33,7 +33,7 @@ const Lanyard = dynamic(() => import('@/components/3d/lanyard'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center">
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="text-muted text-sm"
@@ -42,7 +42,7 @@ const Lanyard = dynamic(() => import('@/components/3d/lanyard'), {
           <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
           <span>Loading 3D experience...</span>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   ),
 });
@@ -100,7 +100,7 @@ export default function Home() {
               </div>
 
               {/* Lanyard — takes up remaining space */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
@@ -112,7 +112,7 @@ export default function Home() {
                   fov={20}
                   transparent={true}
                 />
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Text below on mobile */}
@@ -125,14 +125,14 @@ export default function Home() {
                   </span>
                 </h1>
 
-                <motion.h2
+                <m.h2
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                   className="text-lg md:text-xl text-primary mb-4 font-medium"
                 >
                   Full Stack Developer
-                </motion.h2>
+                </m.h2>
 
                 <p className="text-base md:text-lg text-muted mb-6 max-w-xl mx-auto leading-relaxed">
                   A full stack developer with a flair for web design and a commitment to top-tier work.
@@ -159,7 +159,7 @@ export default function Home() {
           <div className="hidden lg:grid grid-cols-12 gap-8 items-center min-h-screen">
             {/* Social Icons - Left Side */}
             <div className="col-span-1 flex flex-col items-center lg:items-start space-y-6">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -200,12 +200,12 @@ export default function Home() {
                     <Github01Icon size={24} />
                   </a>
                 </HoverScale>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Main Content - Center */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -213,26 +213,26 @@ export default function Home() {
               >
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
                   <TextReveal text="Hi, I'm " delay={0.2} />
-                  <motion.span
+                  <m.span
                     className="gradient-text inline-block"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
                   >
                     Martin Mwai
-                  </motion.span>
+                  </m.span>
                 </h1>
 
-                <motion.h2
+                <m.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
                   className="text-2xl text-primary mb-6 font-medium"
                 >
                   Full Stack Developer
-                </motion.h2>
+                </m.h2>
 
-                <motion.p
+                <m.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
@@ -241,9 +241,9 @@ export default function Home() {
                   A full stack developer with a flair for web design and a commitment to top-tier work. 
                   Explore my portfolio for innovative solutions that exceed expectations. Welcome to a realm 
                   where design meets precision.
-                </motion.p>
+                </m.p>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.5, duration: 0.5 }}
@@ -257,13 +257,13 @@ export default function Home() {
                       <MessageProgrammingIcon size={20} />
                     </Link>
                   </HoverScale>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             </div>
 
             {/* 3D Lanyard - Right Side */}
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
@@ -283,18 +283,18 @@ export default function Home() {
                 <FloatingElement>
                   <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full blur-xl pointer-events-none" />
                 </FloatingElement>
-              </motion.div>
+              </m.div>
             </div>
           </div>
 
           {/* Scroll Indicator */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 0.5 }}
             className="absolute bottom-18 left-1/2 transform -translate-x-1/2"
           >
-            <motion.div
+            <m.div
               animate={{ y: [0, 20, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -303,8 +303,8 @@ export default function Home() {
                 <span className="text-sm"></span>
                 <ArrowDown01Icon size={24} className="animate-bounce" />
               </Link>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
@@ -357,13 +357,13 @@ export default function Home() {
               ].map((skill, i) => (
                 <StaggerItem key={i}>
                   <HoverScale>
-                    <motion.div whileHover={{ y: -5 }} className="glass rounded-2xl p-8 h-full">
+                    <m.div whileHover={{ y: -5 }} className="glass rounded-2xl p-8 h-full">
                       <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                         <skill.icon size={32} className="text-primary" />
                       </div>
                       <h3 className="text-2xl font-bold mb-4">{skill.title}</h3>
                       <p className="text-muted">{skill.description}</p>
-                    </motion.div>
+                    </m.div>
                   </HoverScale>
                 </StaggerItem>
               ))}

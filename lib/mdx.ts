@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { images } from './images';
 
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
@@ -34,10 +35,24 @@ export function getProjectBySlug(slug: string): Project {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
+  // Auto-resolve image URLs from images config
+  const meta = { ...data } as any;
+  if (meta.image && meta.image.startsWith('/projects/')) {
+    const imageName = meta.image
+      .replace('/projects/', '')
+      .replace(/\.(png|jpg|jpeg|webp)$/i, '')
+      .toLowerCase();
+    
+    const projectImages = images.projects as any;
+    if (projectImages[imageName]) {
+      meta.image = projectImages[imageName];
+    }
+  }
+
   return {
     meta: {
       slug: realSlug,
-      ...(data as Omit<ProjectMeta, 'slug'>),
+      ...meta,
     },
     content,
   };
@@ -94,10 +109,16 @@ export function getBlogBySlug(slug: string): Blog | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
+    // Auto-resolve image URLs from images config
+    const meta = { ...data } as any;
+    if (meta.image && meta.image.startsWith('/blogs/')) {
+      // Logic for blogs if we add them to images.ts later
+    }
+
     return {
       meta: {
         slug: realSlug,
-        ...(data as Omit<BlogMeta, 'slug'>),
+        ...meta,
       },
       content,
     };

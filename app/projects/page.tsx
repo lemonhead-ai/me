@@ -2,6 +2,8 @@ import { getAllProjects } from '@/lib/mdx';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations/AdvancedAnimations';
 
+export const dynamic = 'force-static';
+
 export const metadata = {
   title: 'Projects - Martin Mwai',
   description: 'Explore my portfolio of diverse projects',

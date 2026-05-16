@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { 
   SourceCodeIcon, 
   BrowserIcon, 
@@ -88,7 +88,7 @@ export default function AboutPage() {
                   { label: 'Projects', value: ' Completed' },
                   { label: 'Availability', value: 'Open to opportunities' },
                 ].map((fact, i) => (
-                  <motion.div
+                  <m.div
                     key={fact.label}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -98,7 +98,7 @@ export default function AboutPage() {
                   >
                     <span className="text-muted">{fact.label}</span>
                     <span className="font-semibold text-foreground">{fact.value}</span>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
             {Object.entries(skills).map(([category, items], i) => (
               <StaggerItem key={category}>
                 <HoverScale>
-                  <motion.div
+                  <m.div
                     whileHover={{ y: -5 }}
                     className="glass rounded-2xl p-6"
                   >
@@ -132,7 +132,7 @@ export default function AboutPage() {
                         </li>
                       ))}
                     </ul>
-                  </motion.div>
+                  </m.div>
                 </HoverScale>
               </StaggerItem>
             ))}
@@ -150,7 +150,7 @@ export default function AboutPage() {
           <StaggerContainer>
             {experience.map((exp, i) => (
               <StaggerItem key={i}>
-                <motion.div
+                <m.div
                   whileHover={{ x: 5 }}
                   className="glass rounded-2xl p-6 mb-6"
                 >
@@ -162,7 +162,7 @@ export default function AboutPage() {
                   </div>
                   <p className="text-muted mb-2">{exp.company}</p>
                   <p className="text-muted">{exp.description}</p>
-                </motion.div>
+                </m.div>
               </StaggerItem>
             ))}
           </StaggerContainer>

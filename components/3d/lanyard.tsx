@@ -14,6 +14,7 @@ import {
 } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
+import { images } from '@/lib/images';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -119,9 +120,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
     linearDamping: 4,
   };
 
-  const { nodes, materials } = useGLTF('/lanyard/card.glb') as any;
-  const texture = useTexture('/lanyard/lanyard.png');
-  const cardTexture = useTexture('/me.JPG');
+  const { nodes, materials } = useGLTF(images.lanyardModel) as any;
+  const texture = useTexture(images.lanyardTexture);
+  const cardTexture = useTexture(images.profilePhoto);
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([

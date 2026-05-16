@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { SpotifyIcon } from 'hugeicons-react';
 
 interface SpotifyTrack {
@@ -41,7 +41,7 @@ export function SpotifyMiniWidget() {
   if (!track) return null;
 
   return (
-    <motion.a
+    <m.a
       href={track.songUrl}
       target="_blank"
       rel="noopener noreferrer"
@@ -55,12 +55,12 @@ export function SpotifyMiniWidget() {
         {track.title}
       </span>
       {track.isPlaying && (
-        <motion.div
+        <m.div
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 1, repeat: Infinity }}
           className="w-2 h-2 bg-primary rounded-full"
         />
       )}
-    </motion.a>
+    </m.a>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { SpotifyIcon } from 'hugeicons-react';
 import Image from 'next/image';
 
@@ -55,7 +55,7 @@ export function SpotifyNowPlaying() {
 
   if (isLoading) {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-2xl p-4 border border-border"
@@ -67,13 +67,13 @@ export function SpotifyNowPlaying() {
             <div className="h-3 bg-secondary rounded w-1/2 animate-pulse" />
           </div>
         </div>
-      </motion.div>
+      </m.div>
     );
   }
 
   if (error || !track) {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-2xl p-4 border border-border"
@@ -87,13 +87,13 @@ export function SpotifyNowPlaying() {
             <p className="text-xs">Spotify</p>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     );
   }
 
   return (
     <AnimatePresence mode="wait">
-      <motion.a
+      <m.a
         key={track.songUrl}
         href={track.songUrl}
         target="_blank"
@@ -115,13 +115,13 @@ export function SpotifyNowPlaying() {
             />
             {track.isPlaying && (
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <motion.div
+                <m.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                   className="text-primary"
                 >
                   <SpotifyIcon size={24} />
-                </motion.div>
+                </m.div>
               </div>
             )}
           </div>
@@ -133,29 +133,29 @@ export function SpotifyNowPlaying() {
                 {track.title}
               </p>
               {track.isPlaying && (
-                <motion.div
+                <m.div
                   animate={{ opacity: [1, 0.5, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                   className="flex-shrink-0"
                 >
                   <div className="flex gap-0.5 items-end h-3">
-                    <motion.div
+                    <m.div
                       animate={{ height: ['4px', '12px', '4px'] }}
                       transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
                       className="w-0.5 bg-primary rounded-full"
                     />
-                    <motion.div
+                    <m.div
                       animate={{ height: ['8px', '4px', '8px'] }}
                       transition={{ duration: 0.8, repeat: Infinity, delay: 0.1 }}
                       className="w-0.5 bg-primary rounded-full"
                     />
-                    <motion.div
+                    <m.div
                       animate={{ height: ['4px', '10px', '4px'] }}
                       transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
                       className="w-0.5 bg-primary rounded-full"
                     />
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </div>
             <p className="text-xs text-muted truncate">{track.artist}</p>
@@ -167,7 +167,7 @@ export function SpotifyNowPlaying() {
             </div>
           </div>
         </div>
-      </motion.a>
+      </m.a>
     </AnimatePresence>
   );
 }

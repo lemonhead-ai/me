@@ -2,6 +2,8 @@ import { getAllBlogs } from '@/lib/mdx';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations/AdvancedAnimations';
 
+export const dynamic = 'force-static';
+
 export const metadata = {
   title: 'Blog - Martin Mwai',
   description: 'Thoughts on software development, tech trends, and my journey.',

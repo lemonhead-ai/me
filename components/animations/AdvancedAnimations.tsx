@@ -1,20 +1,20 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ReactNode, useRef, useState, useEffect } from 'react';
 
 // Page Transition Wrapper
 export function PageTransition({ children }: { children: ReactNode }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -41,14 +41,14 @@ export function ScrollReveal({
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, ...directions[direction] }}
       animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -66,7 +66,7 @@ export function MagneticButton({ children }: { children: ReactNode }) {
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={() => setPosition({ x: 0, y: 0 })}
@@ -74,7 +74,7 @@ export function MagneticButton({ children }: { children: ReactNode }) {
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -95,9 +95,9 @@ export function ParallaxSection({
   const y = useTransform(scrollYProgress, [0, 1], [-100 * speed, 100 * speed]);
 
   return (
-    <motion.div ref={ref} style={{ y }}>
+    <m.div ref={ref} style={{ y }}>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -111,7 +111,7 @@ export function ScrollProgress() {
   });
 
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 origin-left pointer-events-none"
       style={{ scaleX }}
     />
@@ -127,7 +127,7 @@ export function StaggerContainer({
   staggerDelay?: number;
 }) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       animate="visible"
       variants={{
@@ -139,13 +139,13 @@ export function StaggerContainer({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
 export function StaggerItem({ children }: { children: ReactNode }) {
   return (
-    <motion.div
+    <m.div
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -153,7 +153,7 @@ export function StaggerItem({ children }: { children: ReactNode }) {
       transition={{ duration: 0.5 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -162,7 +162,7 @@ export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }
   const letters = text.split('');
 
   return (
-    <motion.span
+    <m.span
       initial="hidden"
       animate="visible"
       variants={{
@@ -175,7 +175,7 @@ export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }
       }}
     >
       {letters.map((letter, i) => (
-        <motion.span
+        <m.span
           key={i}
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -184,16 +184,16 @@ export function TextReveal({ text, delay = 0 }: { text: string; delay?: number }
           style={{ display: 'inline-block' }}
         >
           {letter === ' ' ? '\u00A0' : letter}
-        </motion.span>
+        </m.span>
       ))}
-    </motion.span>
+    </m.span>
   );
 }
 
 // Floating Element
 export function FloatingElement({ children }: { children: ReactNode }) {
   return (
-    <motion.div
+    <m.div
       animate={{
         y: [0, -20, 0],
       }}
@@ -204,7 +204,7 @@ export function FloatingElement({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -217,13 +217,13 @@ export function HoverScale({
   scale?: number;
 }) {
   return (
-    <motion.div
+    <m.div
       whileHover={{ scale }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -249,7 +249,7 @@ export function TiltCard({ children }: { children: ReactNode }) {
   };
 
   return (
-    <motion.div
+    <m.div
       onMouseMove={handleMouse}
       onMouseLeave={() => {
         x.set(0);
@@ -259,6 +259,6 @@ export function TiltCard({ children }: { children: ReactNode }) {
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
