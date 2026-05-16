@@ -41,23 +41,29 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
+import { ClerkProvider } from '@clerk/nextjs';
+
+import { AdSenseSetup } from '@/components/ads/AdSenseSetup';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Additional meta tags for broader browser support */}
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-navbutton-color" content="#0f0f0f" />
-      </head>
-      <body
-        className={`${spaceGrotesk.className} bg-background text-foreground antialiased`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider>
-          <BrowserThemeColor />
-          <ScrollProgress />
-          <div className="flex flex-col min-h-screen">
-            <Header />
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head>
+          {/* Additional meta tags for broader browser support */}
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="msapplication-navbutton-color" content="#0f0f0f" />
+          <AdSenseSetup />
+        </head>
+        <body
+          className={`${spaceGrotesk.className} bg-background text-foreground antialiased`}
+          suppressHydrationWarning
+        >
+          <ThemeProvider>
+            <BrowserThemeColor />
+            <ScrollProgress />
+            <div className="flex flex-col min-h-screen">
+              <Header />
             <main className="flex-1 pt-16">
               {children}
               <SpeedInsights />
@@ -67,5 +73,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

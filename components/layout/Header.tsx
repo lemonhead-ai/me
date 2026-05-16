@@ -8,11 +8,13 @@ import { useState } from 'react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { MagneticButton } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
+import { useAuth, SignInButton, UserButton } from '@clerk/nextjs';
 
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { name: 'Projects', path: '/projects' },
+  { name: 'Blog', path: '/blog' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -20,6 +22,7 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isSignedIn } = useAuth();
 
   return (
     <>
@@ -42,6 +45,7 @@ export function Header() {
                   src="/portlogo.png"
                   alt="Logo"
                   fill
+                  sizes="112px"
                   className="object-cover object-center" // Fill and center within circle
                 />
               </motion.div>
@@ -77,9 +81,13 @@ export function Header() {
               <SpotifyMiniWidget />
             </div>
 
-            {/* Desktop Theme Switcher */}
-            <div className="hidden md:flex items-center -space-x-1">
+            {/* Desktop Theme Switcher & Auth */}
+            <div className="hidden md:flex items-center gap-4">
               <ThemeSwitcher />
+              
+              {isSignedIn && (
+                <UserButton />
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -137,15 +145,22 @@ export function Header() {
               ))}
             </div>
 
-            {/* Mobile Theme Switcher */}
+            {/* Mobile Theme Switcher & Auth */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ delay: navItems.length * 0.1 }}
-              className="mt-8 mb-8 pb-8 flex justify-center items-center w-full max-w-sm mx-auto"
+              className="mt-4 mb-8 pb-8 flex flex-col justify-center items-center gap-6 w-full max-w-sm mx-auto"
             >
               <ThemeSwitcher variant="mobile" />
+
+              {isSignedIn && (
+                <div className="flex items-center gap-3 w-full px-4 py-3 bg-secondary rounded-xl">
+                  <UserButton />
+                  <span className="text-sm font-medium text-foreground">Manage Account</span>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
