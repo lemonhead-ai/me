@@ -3,9 +3,11 @@ import { auth } from '@clerk/nextjs/server';
 import Stripe from 'stripe';
 import { getBlogBySlug } from '@/lib/mdx';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-04-22.dahlia' as any,
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: '2026-04-22.dahlia' as any,
+  });
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,6 +15,8 @@ export async function POST(req: NextRequest) {
     if (!userId) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
+
+    const stripe = getStripe();
 
     const formData = await req.formData();
     const slug = formData.get('slug') as string;
