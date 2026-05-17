@@ -12,29 +12,29 @@ import { ScrollReveal, StaggerContainer, StaggerItem, HoverScale } from '@/compo
 
 const skills = {
   'Frontend': ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-  'Backend': ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'GraphQL'],
-  'Tools': ['Git', 'Docker', 'AWS', 'Vercel', 'Figma'],
-  'Practices': ['Responsive Design', 'Performance Optimization', 'Testing', 'CI/CD'],
+  'Backend': ['Node.js', 'PostgreSQL', 'MongoDB', 'GraphQL'],
+  'Tools': ['Git', 'Docker', 'AWS', 'Vercel'],
+  'Practices': ['Responsive Design', 'Performance Optimization', 'Q.Testing', 'CI/CD Pipelines'],
 };
 
 const experience = [
   {
-    role: 'Junior Frontend Developer, Mobile Developer',
-    company: 'Lemonlabs',
+    role: 'Developer',
+    company: '/mrtn.',
     period: '2023 - Present',
-    description: 'Leading frontend development for enterprise applications',
+    description: 'Leading fullstack development for solo projects, enterprise applications and sites',
   },
   {
-    role: 'Full Stack Developer',
+    role: 'Frontend Developer',
     company: 'Secure Chain Systems',
     period: '2025 - Present',
-    description: 'Built and maintained multiple web applications',
+    description: 'Built and maintained multiple cross-platform applications',
   },
   {
-    role: 'Mobile Developer',
-    company: 'Secure Chain Systems',
-    period: '2025 - Present',
-    description: 'Developed mobile applications',
+    role: 'Software Engineer',
+    company: 'Juhudi Kilimo',
+    period: '05/2024 - 07/2024',
+    description: 'Developed Fintech applications in a finance company',
   },
 ];
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
               <div className="space-y-4 text-muted leading-relaxed">
                 <p>
                   I&apos;m a software developer with a passion for building beautiful, performant, 
-                  and user-friendly web applications. My journey in tech started over 5 years ago, 
+                  and user-friendly web applications. My journey in tech started over 6 years ago, 
                   and I&apos;ve been hooked ever since.
                 </p>
                 <p>
@@ -85,7 +85,7 @@ export default function AboutPage() {
                 {[
                   { label: 'Location', value: 'Nairobi, KE' },
                   { label: 'Experience', value: '3+ Years' },
-                  { label: 'Projects', value: ' Completed' },
+                  { label: 'Projects', value: '10+ Completed' },
                   { label: 'Availability', value: 'Open to opportunities' },
                 ].map((fact, i) => (
                   <m.div

@@ -25,7 +25,7 @@ export function AdBanner({
   }, []);
 
   return (
-    <div className="my-8 flex justify-center items-center bg-white/5 border border-white/10 rounded-lg min-h-[100px] overflow-hidden relative">
+    <div className="my-8 flex justify-center items-center bg-white/5 border border-border rounded-2xl min-h-[100px] overflow-hidden relative">
       {/* Visual placeholder for development */}
       <div className="absolute inset-0 flex items-center justify-center text-muted text-sm -z-10">
         {placeholder}

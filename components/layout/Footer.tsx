@@ -6,6 +6,7 @@ import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon
 import { HoverScale } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
 import { images } from '@/lib/images';
+import Link from "next/link";
 
 const socialLinks = [
   { name: 'GitHub', icon: Github01Icon, href: 'https://github.com/lemonhead-ai' },
@@ -98,11 +99,12 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-8 pt-8 border-t border-border text-center"
+          className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-border text-md opacity-40 flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="text-muted text-sm">
-            © {currentYear} martinmwai. All rights reserved.
-          </p>
+          <p>&copy; {currentYear} /mrtn. All rights reserved.</p>
+          <div className="flex space-x-4 text-md mt-4 md:mt-0">
+            <Link href="/privacy">Buy me Coffee 🍵</Link>
+          </div>
         </m.div>
       </div>
 

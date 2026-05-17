@@ -72,19 +72,19 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
   }
 
   return (
-    <article className="min-h-screen py-24 bg-background">
+    <article className="min-h-screen py-10 bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-8 transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-primary hover:text-blue-500 -mb-6 transition-colors font-medium"
           >
             <ArrowLeft01Icon size={20} />
             Back to blogs
           </Link>
 
-          <header className="mb-12 border-b border-white/10 pb-8">
-            <div className="flex flex-wrap gap-2 mb-6">
+          <header className="mb-10 mt-2 border-b border-border pb-8">
+            <div className="flex flex-wrap gap-2 mb-2">
               {blog.meta.tags.map((tag) => (
                 <span
                   key={tag}
@@ -105,7 +105,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
             </h1>
 
             <div className="flex items-center text-muted gap-4 text-sm">
-              <span className="font-medium text-foreground">{blog.meta.author || 'Martin Mwai'}</span>
+              <span className="font-medium text-foreground">{blog.meta.author || 'Martin'}</span>
               <span>•</span>
               <time dateTime={blog.meta.date}>
                 {new Date(blog.meta.date).toLocaleDateString('en-US', {
@@ -126,16 +126,16 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                 <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-6">
                   <LockKeyIcon size={40} />
                 </div>
-                <h2 className="text-3xl font-bold mb-4">Premium Article</h2>
+                <h2 className="text-3xl font-bold mb-4">Exclusive Content</h2>
                 <p className="text-muted text-lg mb-8 max-w-md">
-                  This article is exclusive to premium members. 
-                  {userId ? " Unlock it now to keep reading." : " Sign in and unlock to keep reading."}
+                  
+                  {userId ? " Unlock it now to keep reading." : " Sign in to keep reading."}
                 </p>
                 
                 {!userId ? (
                   <SignInButton mode="modal">
                     <button className="px-8 py-4 bg-primary hover:bg-primary-dark text-blue rounded-lg font-semibold transition-colors">
-                      Sign in to Unlock
+                      Unlock article
                     </button>
                   </SignInButton>
                 ) : (

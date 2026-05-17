@@ -1,30 +1,24 @@
 ---
-title: "Advanced Next.js Authentication Architectures"
-description: "A deep dive into setting up enterprise-grade authentication with custom databases and NextAuth."
-date: "2026-05-16"
-tags: ["Next.js", "Authentication", "Security"]
+title: "Managing in CS, 2026"
+description: "Cybersecurity, software development and IT infrastructure "
+date: "2026-05-17"
+tags: ["tech", "cs degree", "unidays"]
 author: "Martin Mwai"
 isPremium: true
 price: 5
 ---
 
-# Advanced Authentication in Next.js
-
-Welcome to this premium guide! If you're reading this, it means you've successfully unlocked the content.
-
+## Advanced Authentication in Next.js
+Computer Science graduate specializing in cybersecurity, 
+software development and IT infrastructure with hands-on 
+experience in network configuration, system security, and 
+vulnerability analysis. Proven foundation through Huawei Network Track 
+competitions (regional level) and HCIA training, with practical exposure 
+to tools such as Wireshark, eNSP, and VirtualBox. Skilled in network troubleshooting, 
+system administration, and implementing secure architectures including DMZ environments. 
+Passionate about developing secure systems, maintaining uptime, and supporting 
+enterprise IT operations.
 ## Setting up the Database Schema
-When dealing with enterprise applications, the default adapters are rarely enough. We need to define custom models for our users.
-
-```prisma
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          Role      @default(USER)
-}
-```
 
 ## Security Considerations
 Always validate session tokens server-side before serving sensitive data...
