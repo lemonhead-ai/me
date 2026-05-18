@@ -14,6 +14,7 @@ export const images = {
   // ─── Site Branding ────────────────────────────────
   /** Site logo used in Header and Footer */
   logo: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939720/portlogo_da1bzk.png',
+  bloglogo:'https://res.cloudinary.com/dfjwbc8i7/image/upload/q_auto/f_auto/v1779130891/mrtnblog_qnw7js.png',
   /** Portfolio hero/preview image */
   portnew: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939725/portnew_fifhgj.png',
 
