@@ -140,7 +140,7 @@ export default function Home() {
                 </m.h2>
 
                 <p className="text-base md:text-lg text-muted mb-2 max-w-xl mx-auto leading-relaxed">
-                  ndie developer and a C.S graduate building efficient, user-focused 
+                  Indie developer and a C.S graduate building efficient, user-focused 
                   digital solutions through code and design, crafting fullstack apps, 
                   and intuitive UI/UX experiences.
                 </p>
