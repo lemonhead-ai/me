@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { m } from 'framer-motion';
 import { SpotifyNowPlaying } from '../SpotifyNowPlaying';
 import { Github01Icon, Linkedin02Icon, NewTwitterIcon, Mail01Icon, InstagramIcon } from 'hugeicons-react';
@@ -17,7 +18,58 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+  const isBlogRoute = pathname === '/blog' || pathname.startsWith('/blog/');
+
+  if (isBlogRoute) {
+    return (
+      <footer className="border-t border-border bg-background py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted">
+          <div className="flex items-center gap-3">
+            <Link href="/blog" className="flex items-center">
+              <m.div
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative w-36 h-12 overflow-hidden"
+              >
+                <Image
+                  src={images.bloglogo}
+                  alt="mrtn.blogs logo"
+                  fill
+                  sizes="144px"
+                  className="object-contain object-left"
+                />
+              </m.div>
+            </Link>
+            <span className="text-border">|</span>
+            <span className="opacity-60">&copy; {currentYear} Martin Mwai</span>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <Link href="/" className="hover:text-primary transition-colors font-medium">
+              Visit my page
+            </Link>
+            <span className="text-border">|</span>
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted hover:text-primary transition-colors opacity-70 hover:opacity-100"
+                  aria-label={social.name}
+                >
+                  <social.icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer className="border-t border-border bg-background">
