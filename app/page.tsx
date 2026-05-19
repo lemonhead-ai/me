@@ -140,9 +140,9 @@ export default function Home() {
                 </m.h2>
 
                 <p className="text-base md:text-lg text-muted mb-2 max-w-xl mx-auto leading-relaxed">
-                  Indie developer and a Computer Science graduate building
-                  efficient, user-focused digital experiences through code and design
-                  Skilled in crafting fullstack apps, and intuitive UI/UX expereinces.
+                  ndie developer and a C.S graduate building efficient, user-focused 
+                  digital solutions through code and design, crafting fullstack apps, 
+                  and intuitive UI/UX experiences.
                 </p>
 
                 <div className="flex justify-center">
@@ -243,9 +243,9 @@ export default function Home() {
                   transition={{ delay: 1.2, duration: 0.5 }}
                   className="text-lg text-muted mb-12 max-w-2xl leading-relaxed"
                 >
-                  Indie developer and a Computer Science graduate building
-                  efficient, user-focused digital experiences through code and design
-                  Skilled in crafting fullstack apps, and intuitive UI/UX expereinces.
+                  Indie developer and a C.S graduate building efficient, user-focused 
+                  digital solutions through code and design, crafting fullstack apps, 
+                  and intuitive UI/UX experiences.
                 </m.p>
 
                 <m.div
