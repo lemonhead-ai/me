@@ -71,9 +71,9 @@ export default function Home() {
           {/* MOBILE LAYOUT */}
           <div className="lg:hidden flex flex-col items-center gap-4 py-8">
             {/* Lanyard + social icons side by side */}
-            <div className="w-full flex items-center gap-3 px-2">
+            <div className="w-full flex items-center gap-2 px-2">
               {/* Social icons — left column */}
-              <div className="flex flex-col space-y-4 shrink-0">
+              <div className="flex flex-col -mt-35 space-y-2 shrink-0 -translate-y-10">
                 <HoverScale>
                   <a
                     href="https://www.linkedin.com/in/martinmwai"
@@ -122,7 +122,7 @@ export default function Home() {
 
             {/* Text below on mobile */}
             <div className="w-full px-4 sm:px-6">
-              <div className="text-center -mt-25">
+              <div className="text-center -mt-45">
                 <h1 className="text-2xl md:text-3xl font-bold mb-3">
                   <TextReveal text="Hi, I'm " delay={0.2} />
                   <span className="gradient-text">
@@ -136,13 +136,13 @@ export default function Home() {
                   transition={{ delay: 0.6 }}
                   className="text-lg md:text-xl text-primary mb-4 font-medium"
                 >
-                  Full Stack Developer
+                  SWE, Cybersecurity Engineer, DevOps, AI/ML Apprentice
                 </m.h2>
 
                 <p className="text-base md:text-lg text-muted mb-2 max-w-xl mx-auto leading-relaxed">
-                  A full stack developer with a flair for web design and a commitment to top-tier work.
-                  Explore my portfolio for innovative solutions that exceed expectations. Welcome to a realm
-                  where design meets precision.
+                  An indie developer with a background in Computer Science, specializing in building
+                  efficient, user-focused systems.Skilled in fullstack development, with a flair for web design and UI/UX.<br />
+                  Explore my portfolio for innovative solutions that exceed expectations.
                 </p>
 
                 <div className="flex justify-center">
@@ -241,7 +241,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="text-lg text-muted mb-8 max-w-2xl leading-relaxed"
+                  className="text-lg text-muted mb-12 max-w-2xl leading-relaxed"
                 >
                   A full stack developer with a flair for web design and a commitment to top-tier work. 
                   Explore my portfolio for innovative solutions that exceed expectations. Welcome to a realm 
@@ -256,7 +256,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/50 text-blue rounded-lg font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl bg-primary hover:bg-blue-500 text-blue hover:text-blue rounded-lg font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={20} />
@@ -316,7 +316,7 @@ export default function Home() {
           </ScrollReveal>
 
           <StaggerContainer>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
                   icon: SourceCodeIcon,
@@ -355,8 +355,8 @@ export default function Home() {
               ].map((skill, i) => (
                 <StaggerItem key={i}>
                   <HoverScale>
-                    <m.div whileHover={{ y: -5 }} className="glass rounded-2xl p-8 h-full">
-                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                    <m.div whileHover={{ y: -5 }} className="glass rounded-3xl p-8 h-full">
+                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-1">
                         <skill.icon size={32} className="text-primary" />
                       </div>
                       <h3 className="text-2xl font-bold mb-4">{skill.title}</h3>
