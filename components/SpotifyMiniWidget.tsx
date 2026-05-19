@@ -51,7 +51,7 @@ export function SpotifyMiniWidget() {
       className="inline-flex items-center gap-1 px-1 py-2 rounded-full border border-border hover:border-primary/200 transition-colors text-sm"
     >
       <SpotifyIcon size={16} className="text-sm" />
-      <span className="text-foreground font-medium truncate max-w-[200px]">
+      <span className="text-foreground font-medium truncate max-w-[60px] sm:max-w-[120px] md:max-w-[200px]">
         {track.title}
       </span>
       {track.isPlaying && (

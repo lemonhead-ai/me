@@ -8,32 +8,105 @@ import { useState } from 'react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { MagneticButton } from '../animations/AdvancedAnimations';
 import Image from 'next/image';
-import { useAuth, UserButton, useUser, useClerk } from '@clerk/nextjs';
-import { Home01Icon, Settings02Icon } from 'hugeicons-react';
+import { useAuth, useUser, useClerk } from '@clerk/nextjs';
+import { Home01Icon, Settings02Icon, Logout01Icon } from 'hugeicons-react';
 
-// Compact UserButton for blog routes — shows only "Preferences" + "Visit my page"
-function BlogUserButton() {
+// Custom desktop user dropdown with design consistency (Hugeicons, dark overlay, layout)
+function DesktopUserDropdown() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { user } = useUser();
+  const { openUserProfile, signOut } = useClerk();
+
+  if (!user) return null;
+
   return (
-    <UserButton
-      appearance={{
-        elements: {
-          avatarBox: 'w-7 h-7',
-          userButtonTrigger: 'focus:shadow-none focus:outline-none',
-        },
-      }}
-    >
-      <UserButton.MenuItems>
-        <UserButton.Link
-          label="Visit my page"
-          labelIcon={
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
-              <path d="M8.543 2.232a.75.75 0 0 0-1.085 0l-5.25 5.5A.75.75 0 0 0 2.75 9H4v4a1 1 0 0 0 1 1h2v-3h2v3h2a1 1 0 0 0 1-1V9h1.25a.75.75 0 0 0 .543-1.268l-5.25-5.5Z" />
-            </svg>
-          }
-          href="/"
-        />
-      </UserButton.MenuItems>
-    </UserButton>
+    <div className="relative">
+      <button
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+        className="relative z-50 flex items-center justify-center w-7 h-7 rounded-full ring-2 ring-border hover:ring-blue-500/60 transition-all overflow-hidden cursor-pointer"
+        aria-label="Toggle user menu"
+      >
+        {user.imageUrl ? (
+          <Image
+            src={user.imageUrl}
+            alt="Profile"
+            fill
+            sizes="28px"
+            className="object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-secondary" />
+        )}
+      </button>
+
+      <AnimatePresence>
+        {dropdownOpen && (
+          <>
+            {/* Backdrop to close dropdown when clicking outside */}
+            <div
+              className="fixed inset-0 z-40 cursor-default"
+              onClick={() => setDropdownOpen(false)}
+            />
+            
+            {/* Dropdown Menu */}
+            <m.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+              className="absolute right-0 mt-3 w-72 rounded-2xl bg-background/95 backdrop-blur-xl border border-border shadow-2xl p-3 z-50 flex flex-col gap-1"
+            >
+              {/* User info row */}
+              <div className="flex items-center gap-3 px-3 py-2.5 mb-1.5 border-b border-border/55">
+                <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/50 flex-shrink-0">
+                  {user.imageUrl ? (
+                    <Image src={user.imageUrl} alt="Profile" fill sizes="32px" className="object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-secondary" />
+                  )}
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-sm font-medium text-foreground truncate">{user.fullName ?? user.username}</span>
+                  <span className="text-xs text-muted-foreground truncate">{user.primaryEmailAddress?.emailAddress}</span>
+                </div>
+              </div>
+
+              {/* Menu Items */}
+              <Link
+                href="/"
+                onClick={() => setDropdownOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary transition-colors"
+              >
+                <Home01Icon size={18} className="text-muted-foreground flex-shrink-0" />
+                Visit my page
+              </Link>
+
+              <button
+                onClick={() => {
+                  setDropdownOpen(false);
+                  openUserProfile();
+                }}
+                className="flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-secondary transition-colors cursor-pointer"
+              >
+                <Settings02Icon size={18} className="text-muted-foreground flex-shrink-0" />
+                User preferences
+              </button>
+
+              <button
+                onClick={() => {
+                  setDropdownOpen(false);
+                  signOut();
+                }}
+                className="flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-500/10 hover:text-red-600 transition-colors cursor-pointer"
+              >
+                <Logout01Icon size={18} className="text-red-500/70 flex-shrink-0" />
+                Sign out
+              </button>
+            </m.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 import { images } from '@/lib/images';
@@ -139,7 +212,7 @@ export function Header() {
             <div className="hidden md:flex items-center gap-4">
               <ThemeSwitcher />
               
-              {isBlogRoute && isSignedIn && <BlogUserButton />}
+              {isBlogRoute && isSignedIn && <DesktopUserDropdown />}
             </div>
 
             {/* Mobile — blog routes show profile avatar button, other routes show 2-bar hamburger */}
