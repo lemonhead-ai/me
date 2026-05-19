@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import {
@@ -56,7 +56,7 @@ export default function Lanyard({
           gravity={gravity}
           timeStep={isMobile ? 1 / 30 : 1 / 60}
         >
-          <Band isMobile={isMobile} />
+          <Band isMobile={isMobile} cameraPosition={position} fov={fov} />
         </Physics>
         <Environment blur={0.75}>
           <Lightformer
@@ -93,13 +93,56 @@ export default function Lanyard({
   );
 }
 
+// Helpers to draw textures onto the combined canvas
+function drawImageCover(ctx: CanvasRenderingContext2D, img: any, x: number, y: number, w: number, h: number) {
+  const imgW = img.width || w;
+  const imgH = img.height || h;
+  const aspect = imgW / imgH;
+  const targetAspect = w / h;
+  
+  let drawW = w;
+  let drawH = h;
+  let drawX = x;
+  let drawY = y;
+  
+  if (aspect > targetAspect) {
+    drawW = h * aspect;
+    drawX = x + (w - drawW) / 2;
+  } else {
+    drawH = w / aspect;
+    drawY = y + (h - drawH) / 2;
+  }
+  
+  ctx.drawImage(img, drawX, drawY, drawW, drawH);
+}
+
+function drawImageLinkedIn(ctx: CanvasRenderingContext2D, img: any, x: number, y: number, w: number, h: number) {
+  const imgW = img.width || w;
+  const imgH = img.height || h;
+  const aspect = imgW / imgH;
+  
+  // Fit width, align to top, crop bottom
+  const drawW = w;
+  const drawH = w / aspect;
+  
+  ctx.drawImage(img, x, y, drawW, drawH);
+}
+
 interface BandProps {
   maxSpeed?: number;
   minSpeed?: number;
   isMobile?: boolean;
+  cameraPosition: [number, number, number];
+  fov: number;
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
+function Band({
+  maxSpeed = 50,
+  minSpeed = 0,
+  isMobile = false,
+  cameraPosition,
+  fov,
+}: BandProps) {
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);
@@ -123,6 +166,55 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
   const { nodes, materials } = useGLTF(images.lanyardModel) as any;
   const texture = useTexture(images.lanyardTexture);
   const cardTexture = useTexture(images.profilePhoto);
+  const linkedinTexture = useTexture(images.linkedinScreenshot);
+
+  // Combine textures side-by-side: profile photo on the left, LinkedIn on the right
+  const combinedTexture = useMemo(() => {
+    if (!cardTexture.image || !linkedinTexture.image) return null;
+
+    const canvas = document.createElement('canvas');
+    const size = 1024;
+    canvas.width = size * 2;
+    canvas.height = size;
+    
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Front: Profile Cover
+      drawImageCover(ctx, cardTexture.image, 0, 0, size, size);
+      // Back: LinkedIn Top-Fit
+      drawImageLinkedIn(ctx, linkedinTexture.image, size, 0, size, size);
+    }
+    
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    tex.flipY = false;
+    return tex;
+  }, [cardTexture, linkedinTexture]);
+
+  // Sizing and scaling calculations for a larger/responsive card
+  const cardScale = isMobile ? 2.5 : 2.95;
+  const scaleRatio = cardScale / 2.25;
+
+  const colliderArgs = useMemo(() => {
+    return [0.8 * scaleRatio, 1.125 * scaleRatio, 0.015 * scaleRatio] as const;
+  }, [scaleRatio]);
+
+  const jointOffset = 1.45 * scaleRatio;
+  const groupPosY = -1.2 * scaleRatio;
+
+  // Calculate the y coordinate of the top edge of the screen to attach the band to the navbar
+  const topAnchorY = useMemo(() => {
+    const cameraZ = cameraPosition[2] ?? 20;
+    const fovRad = (fov * Math.PI) / 180;
+    // top edge of the frustum plus a slight overlap so it sits nicely behind the navbar
+    return cameraZ * Math.tan(fovRad / 2) + 0.15;
+  }, [cameraPosition, fov]);
+
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([
@@ -134,15 +226,6 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
   );
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
 
-  // Fix image orientation on GLTF model
-  cardTexture.flipY = false;
-  cardTexture.wrapS = THREE.RepeatWrapping;
-  cardTexture.wrapT = THREE.RepeatWrapping;
-  // If the image is sideways instead of upside down, uncomment and adjust the rotation below:
-  // cardTexture.center.set(0.5, 0.5);
-  // cardTexture.rotation = Math.PI / 2; // (Math.PI / 2 is 90 degrees, Math.PI is 180 degrees)
-  // cardTexture.needsUpdate = true;
-
   const [hovered, hover] = useState(false);
 
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
@@ -150,7 +233,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
-    [0, 1.45, 0],
+    [0, jointOffset, 0],
   ]);
 
   useEffect(() => {
@@ -170,12 +253,17 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
         const y = posAttribute.getY(i);
         const z = posAttribute.getZ(i);
         
-        let u = 1 - ((x - bbox.min.x) / width);
-        let v = 1 - ((y - bbox.min.y) / height);
+        const uRatio = (x - bbox.min.x) / width;
+        const v = 1 - ((y - bbox.min.y) / height);
         
-        // Ensure back side displays the image correctly mapped instead of stretched
-        if (z < 0) {
-          u = 1 - u; 
+        let u = 0;
+        // Vertices on the front side (z >= -0.01) map to left half [0, 0.5]
+        if (z >= -0.01) {
+          u = (1 - uRatio) * 0.5;
+        } else {
+          // Vertices on the back side (z < -0.01) map to right half [0.5, 1.0]
+          // Flip back side so it is not mirrored
+          u = 0.5 + uRatio * 0.5;
         }
         
         uvAttribute.setXY(i, u, v);
@@ -243,7 +331,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
 
   return (
     <>
-      <group position={[0, 4, 0]}>
+      <group position={[0, topAnchorY, 0]}>
         <RigidBody
           ref={fixed}
           {...segmentProps}
@@ -283,10 +371,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
               : ('dynamic' as RigidBodyProps['type'])
           }
         >
-          <CuboidCollider args={[0.8, 1.125, 0.01]} />
+          <CuboidCollider args={colliderArgs as any} />
           <group
-            scale={2.25}
-            position={[0, -1.2, -0.05]}
+            scale={cardScale}
+            position={[0, groupPosY, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onPointerUp={(e: any) => {
@@ -304,7 +392,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }: BandProps) {
           >
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial
-                map={cardTexture}
+                map={combinedTexture || cardTexture}
                 map-anisotropy={16}
                 clearcoat={isMobile ? 0 : 1}
                 clearcoatRoughness={0.15}

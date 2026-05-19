@@ -54,6 +54,18 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+        {/* Responsive Lanyard Container anchored to the bottom of the navbar */}
+        <div className="absolute top-1 md:-top-1 left-10 md:left-auto right-0 lg:w-[35%] xl:w-[30%] h-[420px] sm:h-[500px] lg:h-[calc(100vh-80px)] pointer-events-none z-10">
+          <div className="w-full h-full pointer-events-auto">
+            <Lanyard 
+              position={[0, 0, 25]} 
+              gravity={[0, -40, 0]} 
+              fov={20}
+              transparent={true}
+            />
+          </div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 
           {/* MOBILE LAYOUT */}
@@ -99,25 +111,18 @@ export default function Home() {
                 </HoverScale>
               </div>
 
-              {/* Lanyard — takes up remaining space */}
+              {/* Lanyard layout spacer */}
               <m.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="relative flex-1 h-[420px] sm:h-[500px]"
-              >
-                <Lanyard
-                  position={[0, 0, 20]}
-                  gravity={[0, -40, 0]}
-                  fov={20}
-                  transparent={true}
-                />
-              </m.div>
+              />
             </div>
 
             {/* Text below on mobile */}
             <div className="w-full px-4 sm:px-6">
-              <div className="text-center">
+              <div className="text-center -mt-25">
                 <h1 className="text-2xl md:text-3xl font-bold mb-3">
                   <TextReveal text="Hi, I'm " delay={0.2} />
                   <span className="gradient-text">
@@ -134,7 +139,7 @@ export default function Home() {
                   Full Stack Developer
                 </m.h2>
 
-                <p className="text-base md:text-lg text-muted mb-6 max-w-xl mx-auto leading-relaxed">
+                <p className="text-base md:text-lg text-muted mb-2 max-w-xl mx-auto leading-relaxed">
                   A full stack developer with a flair for web design and a commitment to top-tier work.
                   Explore my portfolio for innovative solutions that exceed expectations. Welcome to a realm
                   where design meets precision.
@@ -144,7 +149,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-blue rounded-full font-semibold transition-colors"
+                      className="inline-flex items-center gap-1 px-6 py-3 bg-primary hover:bg-primary-dark text-blue rounded-full font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={18} />
@@ -251,7 +256,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-blue rounded-lg font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary/50 text-blue rounded-lg font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={20} />
@@ -261,7 +266,7 @@ export default function Home() {
               </m.div>
             </div>
 
-            {/* 3D Lanyard - Right Side */}
+            {/* 3D Lanyard - Right Side Layout Spacer */}
             <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <m.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -269,13 +274,6 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="relative w-full h-[600px]"
               >
-                <Lanyard 
-                  position={[0, 0, 20]} 
-                  gravity={[0, -40, 0]} 
-                  fov={20}
-                  transparent={true}
-                />
-
                 {/* Floating decorative elements */}
                 <FloatingElement>
                   <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-4xl pointer-events-none" />
