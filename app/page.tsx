@@ -232,7 +232,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  className="text-2xl text-primary mb-6 font-medium"
+                  className="text-2xl text-primary mb-4 font-medium"
                 >
                   SWE, Cybersecurity Engineer, DevOps
                 </m.h2>
@@ -241,7 +241,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="text-lg text-muted mb-12 max-w-2xl leading-relaxed"
+                  className="text-lg text-muted mb-8 max-w-2xl leading-relaxed"
                 >
                   Indie developer and a C.S graduate building efficient, user-focused 
                   digital solutions through code and design, crafting fullstack apps, 
