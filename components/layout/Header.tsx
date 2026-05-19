@@ -54,7 +54,7 @@ function DesktopUserDropdown() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.15, ease: 'easeOut' }}
-              className="absolute right-0 mt-3 w-72 rounded-2xl bg-[rgb(var(--background))]/95 backdrop-blur-xl border border-border shadow-2xl p-3 z-50 flex flex-col gap-1"
+              className="absolute right-0 mt-3 w-72 rounded-2xl bg-[rgb(var(--card))] border border-border shadow-2xl p-3 z-50 flex flex-col gap-1"
             >
               {/* User info row */}
               <div className="flex items-center gap-3 px-3 py-2.5 mb-1.5 border-b border-border/55">
@@ -274,7 +274,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed top-[56px] md:top-[80px] left-0 right-0 bottom-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border overflow-y-auto flex flex-col px-4 sm:px-6"
+            className="md:hidden fixed top-[56px] md:top-[80px] left-0 right-0 bottom-0 z-50 bg-[rgb(var(--background)_/_0.95)] backdrop-blur-xl border-t border-border overflow-y-auto flex flex-col px-4 sm:px-6"
           >
             <div className="flex-1 space-y-1 mt-2">
               {navItems.map((item, index) => (
@@ -322,7 +322,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden fixed top-[56px] left-0 right-0 z-50 bg-[rgb(var(--background))]/95 backdrop-blur-xl border-b border-border shadow-lg"
+            className="md:hidden fixed top-[56px] left-0 right-0 z-50 bg-[rgb(var(--background)_/_0.95)] backdrop-blur-xl border-b border-border shadow-lg"
           >
             <div className="flex flex-col px-4 py-3 gap-1">
               {/* User info row */}

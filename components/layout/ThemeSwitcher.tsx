@@ -221,7 +221,7 @@ export function ThemeSwitcher({ variant = 'desktop' }: { variant?: 'desktop' | '
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: DURATION }}
               className="absolute right-0 mt-2 w-44 p-6 rounded-3xl border border-border
-                        bg-[rgb(var(--background))]/90 backdrop-blur-xl text-foreground shadow-lg"
+                        bg-[rgb(var(--card))] text-foreground shadow-lg"
               style={{
                 zIndex: 50,
               }}
