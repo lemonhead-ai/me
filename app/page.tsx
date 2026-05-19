@@ -149,7 +149,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-1 px-6 py-3 bg-primary hover:bg-primary-dark text-blue rounded-full font-semibold transition-colors"
+                      className="inline-flex items-center gap-1 px-6 py-3 bg-primary hover:bg-primary-dark text-orange-600/80 rounded-full font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={18} />
@@ -234,7 +234,7 @@ export default function Home() {
                   transition={{ delay: 1, duration: 0.5 }}
                   className="text-2xl text-primary mb-6 font-medium"
                 >
-                  Full Stack Developer
+                  SWE, Cybersecurity Engineer, DevOps, AI/ML Apprentice
                 </m.h2>
 
                 <m.p
@@ -243,9 +243,9 @@ export default function Home() {
                   transition={{ delay: 1.2, duration: 0.5 }}
                   className="text-lg text-muted mb-12 max-w-2xl leading-relaxed"
                 >
-                  A full stack developer with a flair for web design and a commitment to top-tier work. 
-                  Explore my portfolio for innovative solutions that exceed expectations. Welcome to a realm 
-                  where design meets precision.
+                  An indie developer with a background in Computer Science, specializing in building
+                  efficient, user-focused systems.Skilled in fullstack development, with a flair for web design and UI/UX.<br />
+                  Explore my portfolio for innovative solutions that exceed expectations.
                 </m.p>
 
                 <m.div
@@ -256,7 +256,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 rounded-3xl bg-primary hover:bg-blue-500 text-blue hover:text-blue rounded-lg font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-transparent hover:bg-primary-dark/80 text-orange-600/80 rounded-lg font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={20} />
@@ -383,7 +383,7 @@ export default function Home() {
             <HoverScale>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-blue rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-orange-700/80 rounded-lg font-semibold transition-colors"
               >
                 Start a Convo!
                 <ArrowUpRight01Icon size={25} />
