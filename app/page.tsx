@@ -136,13 +136,13 @@ export default function Home() {
                   transition={{ delay: 0.6 }}
                   className="text-lg md:text-xl text-primary mb-4 font-medium"
                 >
-                  SWE, Cybersecurity Engineer, DevOps, AI/ML Apprentice
+                  SWE, Cybersecurity Engineer, DevOps
                 </m.h2>
 
                 <p className="text-base md:text-lg text-muted mb-2 max-w-xl mx-auto leading-relaxed">
-                  An indie developer with a background in Computer Science, specializing in building
-                  efficient, user-focused systems.Skilled in fullstack development, with a flair for web design and UI/UX.<br />
-                  Explore my portfolio for innovative solutions that exceed expectations.
+                  Indie developer and a Computer Science graduate building
+                  efficient, user-focused digital experiences through code and design
+                  Skilled in crafting fullstack apps, and intuitive UI/UX expereinces.
                 </p>
 
                 <div className="flex justify-center">
@@ -234,7 +234,7 @@ export default function Home() {
                   transition={{ delay: 1, duration: 0.5 }}
                   className="text-2xl text-primary mb-6 font-medium"
                 >
-                  SWE, Cybersecurity Engineer, DevOps, AI/ML Apprentice
+                  SWE, Cybersecurity Engineer, DevOps
                 </m.h2>
 
                 <m.p
@@ -243,9 +243,9 @@ export default function Home() {
                   transition={{ delay: 1.2, duration: 0.5 }}
                   className="text-lg text-muted mb-12 max-w-2xl leading-relaxed"
                 >
-                  An indie developer with a background in Computer Science, specializing in building
-                  efficient, user-focused systems.Skilled in fullstack development, with a flair for web design and UI/UX.<br />
-                  Explore my portfolio for innovative solutions that exceed expectations.
+                  Indie developer and a Computer Science graduate building
+                  efficient, user-focused digital experiences through code and design
+                  Skilled in crafting fullstack apps, and intuitive UI/UX expereinces.
                 </m.p>
 
                 <m.div
