@@ -256,7 +256,7 @@ export default function Home() {
                   <HoverScale>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-transparent hover:bg-primary-dark/80 text-orange-600/80 rounded-lg font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-transparent hover:bg-primary-dark/80 text-blue-400/80 rounded-lg font-semibold transition-colors"
                     >
                       Get in Touch
                       <MessageProgrammingIcon size={20} />
@@ -383,7 +383,7 @@ export default function Home() {
             <HoverScale>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-orange-700/80 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-blue-400/80 rounded-lg font-semibold transition-colors"
               >
                 Start a Convo!
                 <ArrowUpRight01Icon size={25} />

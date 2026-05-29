@@ -62,6 +62,7 @@ export function getAllProjects(): Project[] {
   const slugs = getProjectSlugs();
   const projects = slugs
     .map((slug) => getProjectBySlug(slug))
+    .filter((project) => project.meta.featured !== false)
     .sort((a, b) => {
       return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
     });
@@ -86,6 +87,7 @@ export interface BlogMeta {
   author?: string;
   isPremium?: boolean;
   price?: number;
+  featured?: boolean;
 }
 
 export interface Blog {
@@ -132,7 +134,7 @@ export function getAllBlogs(): Blog[] {
   const slugs = getBlogSlugs();
   const blogs = slugs
     .map((slug) => getBlogBySlug(slug))
-    .filter((blog): blog is Blog => blog !== null)
+    .filter((blog): blog is Blog => blog !== null && blog.meta.featured !== false)
     .sort((a, b) => {
       return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
     });

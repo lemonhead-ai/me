@@ -95,37 +95,36 @@ export default function Lanyard({
 
 // Helpers to draw textures onto the combined canvas
 function drawImageCover(ctx: CanvasRenderingContext2D, img: any, x: number, y: number, w: number, h: number) {
+  const physicalAspect = 1.6 / 2.25; // Aspect ratio of the physical card (width / height)
   const imgW = img.width || w;
   const imgH = img.height || h;
-  const aspect = imgW / imgH;
-  const targetAspect = w / h;
+  const imgAspect = imgW / imgH;
   
-  let drawW = w;
-  let drawH = h;
-  let drawX = x;
-  let drawY = y;
+  let sx = 0, sy = 0, sWidth = imgW, sHeight = imgH;
   
-  if (aspect > targetAspect) {
-    drawW = h * aspect;
-    drawX = x + (w - drawW) / 2;
+  if (imgAspect > physicalAspect) {
+    sWidth = imgH * physicalAspect;
+    sx = (imgW - sWidth) / 2;
   } else {
-    drawH = w / aspect;
-    drawY = y + (h - drawH) / 2;
+    sHeight = imgW / physicalAspect;
+    sy = (imgH - sHeight) / 2;
   }
   
-  ctx.drawImage(img, drawX, drawY, drawW, drawH);
+  ctx.drawImage(img, sx, sy, sWidth, sHeight, x, y, w, h);
 }
 
 function drawImageLinkedIn(ctx: CanvasRenderingContext2D, img: any, x: number, y: number, w: number, h: number) {
+  const physicalAspect = 1.6 / 2.25;
   const imgW = img.width || w;
   const imgH = img.height || h;
-  const aspect = imgW / imgH;
   
-  // Fit width, align to top, crop bottom
-  const drawW = w;
-  const drawH = w / aspect;
+  const sWidth = imgW;
+  const sHeight = Math.min(imgH, imgW / physicalAspect);
   
-  ctx.drawImage(img, x, y, drawW, drawH);
+  const coveredFraction = sHeight / (imgW / physicalAspect);
+  const dHeight = h * coveredFraction;
+  
+  ctx.drawImage(img, 0, 0, sWidth, sHeight, x, y, w, dHeight);
 }
 
 interface BandProps {
