@@ -227,7 +227,7 @@ function Band({
 
   const [hovered, hover] = useState(false);
 
-  const ropeLen = isMobile ? 0.6 : 1;
+  const ropeLen = isMobile ? 0.8 : 1;
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], ropeLen]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], ropeLen]);
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], ropeLen]);
@@ -265,7 +265,7 @@ function Band({
         } else {
           // Vertices on the back side map to right half [0.5, 1.0]
           // Flip back side so it is not mirrored
-          u = 0.5 + uRatio * 0.5;
+          u = 0.5 + (1 - uRatio) * 0.5;
         }
         
         uvAttribute.setXY(i, u, v);
