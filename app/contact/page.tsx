@@ -16,8 +16,8 @@ const socialLinks = [
   { 
     name: 'Email', 
     icon: Mail01Icon, 
-    href: 'mailto:martinmwai901@gmail.com',
-    label: 'martinmwai901@gmail.com' 
+    href: 'mailto:martinmwai@icloud.com',
+    label: 'martinmwai@icloud.com' 
   },
   { 
     name: 'GitHub', 
@@ -48,7 +48,7 @@ export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   // Replace these with your actual EmailJS credentials
-  const EMAILJS_SERVICE_ID = 'service_389i6sb'; // e.g., 'service_abc123'
+  const EMAILJS_SERVICE_ID = 'service_e097tpw'; // e.g., 'service_abc123'
   const EMAILJS_TEMPLATE_ID = 'template_go24qm9'; // e.g., 'template_def456'
   const EMAILJS_PUBLIC_KEY = 'AqDs50k_T_Aq99PGW'; // e.g., 'user_ghi789'
 
