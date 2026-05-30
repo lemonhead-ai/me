@@ -192,6 +192,7 @@ function Band({
     tex.wrapS = THREE.RepeatWrapping;
     tex.wrapT = THREE.RepeatWrapping;
     tex.flipY = false;
+    tex.needsUpdate = true;
     return tex;
   }, [cardTexture, linkedinTexture]);
 
@@ -206,13 +207,12 @@ function Band({
   const jointOffset = 1.45 * scaleRatio;
   const groupPosY = -1.2 * scaleRatio;
 
-  // Calculate the y coordinate of the top edge of the screen to attach the band to the navbar
   const topAnchorY = useMemo(() => {
     const cameraZ = cameraPosition[2] ?? 20;
     const fovRad = (fov * Math.PI) / 180;
     // top edge of the frustum plus a slight overlap so it sits nicely behind the navbar
-    return cameraZ * Math.tan(fovRad / 2) + 0.15;
-  }, [cameraPosition, fov]);
+    return cameraZ * Math.tan(fovRad / 2) + (isMobile ? 1.5 : 0.15);
+  }, [cameraPosition, fov, isMobile]);
 
   const [curve] = useState(
     () =>
@@ -227,9 +227,10 @@ function Band({
 
   const [hovered, hover] = useState(false);
 
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
+  const ropeLen = isMobile ? 0.6 : 1;
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], ropeLen]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], ropeLen]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], ropeLen]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
     [0, jointOffset, 0],
@@ -247,6 +248,8 @@ function Band({
       const posAttribute = geometry.attributes.position;
       const uvAttribute = geometry.attributes.uv;
       
+      const zCenter = (bbox.max.z + bbox.min.z) / 2;
+      
       for (let i = 0; i < posAttribute.count; i++) {
         const x = posAttribute.getX(i);
         const y = posAttribute.getY(i);
@@ -256,11 +259,11 @@ function Band({
         const v = 1 - ((y - bbox.min.y) / height);
         
         let u = 0;
-        // Vertices on the front side (z >= -0.01) map to left half [0, 0.5]
-        if (z >= -0.01) {
+        // Vertices on the front side map to left half [0, 0.5]
+        if (z > zCenter) {
           u = (1 - uRatio) * 0.5;
         } else {
-          // Vertices on the back side (z < -0.01) map to right half [0.5, 1.0]
+          // Vertices on the back side map to right half [0.5, 1.0]
           // Flip back side so it is not mirrored
           u = 0.5 + uRatio * 0.5;
         }
