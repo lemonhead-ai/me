@@ -1,6 +1,8 @@
-/* eslint-disable react/no-unknown-property */
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
-import { useEffect, useRef, useState, useMemo } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import {
@@ -151,7 +153,6 @@ function Band({
 
   const vec = new THREE.Vector3();
   const ang = new THREE.Vector3();
-  const rot = new THREE.Vector3();
   const dir = new THREE.Vector3();
 
   const segmentProps: any = {
@@ -215,17 +216,56 @@ function Band({
   }, [cameraPosition, fov, isMobile]);
 
   const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([
+    () => {
+      const c = new THREE.CatmullRomCurve3([
         new THREE.Vector3(),
         new THREE.Vector3(),
         new THREE.Vector3(),
         new THREE.Vector3(),
-      ])
+      ]);
+      c.curveType = 'chordal';
+      return c;
+    }
   );
+
+  useEffect(() => {
+    if (texture) {
+      // eslint-disable-next-line react-hooks/immutability
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      // eslint-disable-next-line react-hooks/immutability
+      texture.needsUpdate = true;
+    }
+  }, [texture]);
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
 
   const [hovered, hover] = useState(false);
+
+  const autoRotatePhase = useRef<'idle' | 'rotating'>('idle');
+  const autoRotateTimer = useRef<number | null>(null);
+  const autoRotateElapsed = useRef(0);
+  const autoRotateSpeed = useMemo(() => (2 * Math.PI) / 30, []);
+
+  const clearAutoRotateTimer = useCallback((): void => {
+    if (autoRotateTimer.current !== null) {
+      window.clearTimeout(autoRotateTimer.current);
+      autoRotateTimer.current = null;
+    }
+  }, []);
+
+  const scheduleAutoRotate = useCallback((): void => {
+    clearAutoRotateTimer();
+    autoRotateTimer.current = window.setTimeout(() => {
+      autoRotatePhase.current = 'rotating';
+      autoRotateElapsed.current = 0;
+      autoRotateTimer.current = null;
+    }, 60000);
+  }, [clearAutoRotateTimer]);
+
+  const resetAutoRotate = useCallback((): void => {
+    autoRotatePhase.current = 'idle';
+    autoRotateElapsed.current = 0;
+    scheduleAutoRotate();
+  }, [scheduleAutoRotate]);
 
   const ropeLen = isMobile ? 0.8 : 1;
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], ropeLen]);
@@ -270,6 +310,7 @@ function Band({
         
         uvAttribute.setXY(i, u, v);
       }
+      // eslint-disable-next-line react-hooks/immutability
       uvAttribute.needsUpdate = true;
     }
   }, [nodes]);
@@ -282,6 +323,21 @@ function Band({
       };
     }
   }, [hovered, dragged]);
+
+  useEffect(() => {
+    resetAutoRotate();
+    return clearAutoRotateTimer;
+  }, [resetAutoRotate, clearAutoRotateTimer]);
+
+  useEffect(() => {
+    if (dragged) {
+      autoRotatePhase.current = 'idle';
+      autoRotateElapsed.current = 0;
+      clearAutoRotateTimer();
+    } else if (autoRotatePhase.current === 'idle' && autoRotateTimer.current === null) {
+      scheduleAutoRotate();
+    }
+  }, [dragged, clearAutoRotateTimer, scheduleAutoRotate]);
 
   useFrame((state, delta) => {
     if (dragged && typeof dragged !== 'boolean') {
@@ -296,6 +352,16 @@ function Band({
         z: vec.z - dragged.z,
       });
     }
+
+    if (autoRotatePhase.current === 'rotating' && !dragged) {
+      autoRotateElapsed.current += delta;
+      if (autoRotateElapsed.current >= 30) {
+        autoRotatePhase.current = 'idle';
+        autoRotateElapsed.current = 0;
+        scheduleAutoRotate();
+      }
+    }
+
     if (fixed.current) {
       [j1, j2].forEach((ref) => {
         if (!ref.current.lerped)
@@ -319,17 +385,21 @@ function Band({
         curve.getPoints(isMobile ? 16 : 32)
       );
       ang.copy(card.current.angvel());
-      rot.copy(card.current.rotation());
+      const rotQuat = card.current.rotation();
+      const forward = new THREE.Vector3(0, 0, 1).applyQuaternion(
+        new THREE.Quaternion(rotQuat.x, rotQuat.y, rotQuat.z, rotQuat.w)
+      );
+      const theta = Math.atan2(forward.x, forward.z); // wraps to [-PI, PI]
       card.current.setAngvel({
         x: ang.x,
-        y: ang.y - rot.y * 0.25,
+        y:
+          autoRotatePhase.current === 'rotating' && !dragged
+            ? autoRotateSpeed
+            : ang.y - theta * 0.2,
         z: ang.z,
       });
     }
   });
-
-  curve.curveType = 'chordal';
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
   return (
     <>
