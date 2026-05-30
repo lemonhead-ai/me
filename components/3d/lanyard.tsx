@@ -45,7 +45,7 @@ export default function Lanyard({
     <div className="relative z-0 w-full h-full overflow-hidden">
       <Canvas
         camera={{ position, fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
+        dpr={[1, 2]}
         gl={{ alpha: transparent }}
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
@@ -172,7 +172,7 @@ function Band({
     if (!cardTexture.image || !linkedinTexture.image) return null;
 
     const canvas = document.createElement('canvas');
-    const size = 1024;
+    const size = 2048;
     canvas.width = size * 2;
     canvas.height = size;
     
@@ -196,7 +196,7 @@ function Band({
   }, [cardTexture, linkedinTexture]);
 
   // Sizing and scaling calculations for a larger/responsive card
-  const cardScale = isMobile ? 2.5 : 2.95;
+  const cardScale = isMobile ? 3.6 : 4.2;
   const scaleRatio = cardScale / 2.25;
 
   const colliderArgs = useMemo(() => {
