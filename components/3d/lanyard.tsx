@@ -258,7 +258,7 @@ function Band({
       autoRotatePhase.current = 'rotating';
       autoRotateElapsed.current = 0;
       autoRotateTimer.current = null;
-    }, 60000);
+    }, 10000);
   }, [clearAutoRotateTimer]);
 
   const resetAutoRotate = useCallback((): void => {
@@ -354,6 +354,7 @@ function Band({
     }
 
     if (autoRotatePhase.current === 'rotating' && !dragged) {
+      [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
       autoRotateElapsed.current += delta;
       if (autoRotateElapsed.current >= 30) {
         autoRotatePhase.current = 'idle';
