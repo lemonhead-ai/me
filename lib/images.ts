@@ -38,7 +38,7 @@ export const images = {
     entri: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939752/entri_x6pp89.png',
     kurasmart: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939755/kurasmart_tarlfp.png',
     malibu: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939762/malibu_sy8zps.png',
-    portt: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778940585/portt_hek6qf.png',
+    portt: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/v1780148670/porrt_ku8gkj.png',
     pureplast: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939767/pureplast_nr6ong.png',
     readrift: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939749/readrift_wpdrpb.jpg',
     greyonblack: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/f_auto,q_auto/v1778939750/greyonblack_a7vjkl.jpg',
