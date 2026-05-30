@@ -20,7 +20,7 @@ export const images = {
 
   // ─── 3D Lanyard ───────────────────────────────────
   /** Profile photo texture on the 3D lanyard card */
-  profilePhoto: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/q_auto/f_auto/v1780096150/me_dfbeoz.png',
+  profilePhoto: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/v1780132972/me_portfolioo_s3oplr.png',
   /** LinkedIn profile screenshot for the back side */
   linkedinScreenshot: 'https://res.cloudinary.com/dfjwbc8i7/image/upload/q_auto/f_auto/v1779186073/linkedinbg_vn0etw.jpg',
   /** Lanyard band texture */
